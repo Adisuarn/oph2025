@@ -11,9 +11,8 @@ interface Prams {
 }
 
 export const seo = (params: Prams): Metadata => {
-  const title = params.title ? `${params.title} | oph2025` : 'oph2025';
-  const description = params.description || 'oph2025';
-  const images = params.images ?? ['/api/og']
+  const title = params.title ? `${params.title} | Triam Udom Open House 2025` : 'Triam Udom Open House 2025';
+  const description = params.description || 'Triam Udom Open House 2025 -- งานเปิดบ้านวิชาการ โรงเรียนเตรียมอุดมศึกษา ประจำปี 2568';
   const url = params.url ? `${getBaseUrl()}${params.url}` : getBaseUrl();
 
   return { 
@@ -22,7 +21,7 @@ export const seo = (params: Prams): Metadata => {
     description,
     applicationName: 'oph2025',
     alternates: { canonical: url },
-    openGraph: { url, images, type: 'website'},
+    openGraph: { url, type: 'website'},
     icons: { icon: '/favicon.ico' }
   }
 }
