@@ -5,8 +5,11 @@ import { auth } from "~/server/auth"
 import { prisma } from '~/server/db/prisma'
 
 const createContext = new Elysia()
-  .derive(async () => {
+  .derive(async ({ error }) => {
     const session = await auth()
+    if (!session) {
+      return error(401, 'Unauthorized')
+    }
     return { prisma, session }
   })
   .as('plugin')
