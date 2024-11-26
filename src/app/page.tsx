@@ -9,6 +9,7 @@ const Page: NextPage = async () => {
   const session = await auth()
   return (
     <div>
+      <p>Hello Triam Udom Open House 2025</p>
       {session ? (
         <div>
           <h1>Authenticated</h1>
