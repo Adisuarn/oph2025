@@ -1,17 +1,16 @@
 import React from 'react'
-import Link from 'next/link'
+import { SessionProvider } from 'next-auth/react'
+import { auth } from '~/server/auth'
+import RegisterForm from '~/app/_components/Register/registerForm'
+import { redirect } from 'next/navigation'
 
-const Register = () => {
+const Register: React.FC = async () => {
+  const session = await auth()
+  if (!session || session.user.isRegister) redirect('/')
   return (
-    <div>
-      <div>This is Register Page</div>
-      <form>
-        
-      </form>
-      <Link href="/">
-        Back
-      </Link>
-    </div>
+    <SessionProvider>
+      <RegisterForm />
+    </SessionProvider>
   )
 }
 

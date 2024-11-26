@@ -29,23 +29,13 @@ export const authConfig = {
   adapter: PrismaAdapter(prisma),
   providers: [GoogleProvider],
   callbacks: {
-    async signIn({ user }) {
-      const dbUser = await prisma.user.findUnique({
-        where: { email: user.email ?? undefined },
-      });
-
-      if (dbUser && !dbUser.isRegister) {
-        return '/register';
-      }
-
-      return true;
-    },
-    session: async ({ session, user }) => ({
+    session: async ({ session, user }) => (
+      {
       ...session,
       user: {
         ...session.user,
         id: user.id,
-      },
+      }
     }),
   },
 } satisfies NextAuthConfig;
