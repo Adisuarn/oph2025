@@ -13,12 +13,16 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       email: string;
+      code: string;
+      prefix: string;
       username: string;
       firstname: string;
       lastname: string;
       status: string;
       school: string;
-      level: string;
+      classlvl: string;
+      purpose: string[];
+      platform: string[];
       isStaff: boolean;
       isRegister: boolean;
     } & DefaultSession["user"];

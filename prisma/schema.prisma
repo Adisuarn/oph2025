@@ -2,33 +2,43 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
- 
+
 generator client {
   provider = "prisma-client-js"
 }
- 
+
 model User {
-  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?         @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
-  code          String?         @unique
-  username      String?         @unique
+  code          String?   @unique
+  prefix        String?
+  username      String?   @unique
   firstname     String?
   lastname      String?
   status        String?
   school        String?
-  level         String?
-  isStaff       Boolean         @default(false)
-  isRegister    Boolean         @default(false)
+  classlvl      String?
+  purpose       String[]
+  platform      String[]
+  event         Event[]
+  isStaff       Boolean   @default(false)
+  isRegister    Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
 }
- 
+
+type Event {
+  day String
+  join Boolean
+  dayTime DateTime
+}
+
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
@@ -42,31 +52,31 @@ model Account {
   scope             String?
   id_token          String? @db.String
   session_state     String?
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@unique([provider, providerAccountId])
 }
- 
+
 model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
   userId       String   @db.ObjectId
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
- 
+
 model VerificationToken {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String
   expires    DateTime
- 
+
   @@unique([identifier, token])
 }
