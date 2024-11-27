@@ -24,7 +24,7 @@ const Page: NextPage = async () => {
               <p>Registered !!</p>
               <p>First name: {session.user.firstname}</p>
               <p>Last name: {session.user.lastname}</p>
-              <p>Your Code: {}</p>
+              <p>Your Code: {session.user.code}</p>
               <Link href="/e-ticket">Your E-Ticket {}</Link>
             </div>
           ) : (

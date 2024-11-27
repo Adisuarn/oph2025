@@ -7,23 +7,21 @@ import { QRCodeSVG } from 'qrcode.react'
 const page = async () => {
   const session = await auth()
   return (
-    <section className="flex h-screen flex-col items-center justify-center bg-black text-white">
-      <div>{session?.user.firstname}</div>
-      <div>{session?.user.lastname}</div>
-      <div>{session?.user.level}</div>
-      <div>{session?.user.school}</div>
-
-      <Link href="/">SVG Back Arrow or text Home</Link>
-
+    <section className="flex h-screen flex-col items-center justify-center">
+      <div className='py-5 px-8 rounded-xl bg-blue-50 space-y-2'>
+      <div>Hello {session?.user.firstname} {session?.user.lastname}</div>
+      <div>Log in code : {session?.user.code}</div>
       <QRCodeSVG
-        value={'https://picturesofpeoplescanningqrcodes.tumblr.com/'}
+      className='rounded-xl transition-all'
+        value={'https://openhouse.triamudom.ac.th/checkin/' + session?.user.code}
         title={'Triam Udom Open House 2025 E-Ticket'}
         size={128}
         bgColor={'#ffffff'}
         fgColor={'#000000'}
         level={'M'}
+        includeMargin={true}
         imageSettings={{
-          src: 'https://static.zpao.com/favicon.png',
+          src: 'favicon.ico',
           x: undefined,
           y: undefined,
           height: 24,
@@ -32,6 +30,9 @@ const page = async () => {
           excavate: true,
         }}
       />
+      <Link href="/">Home</Link>
+      <Link href={`checkin/${session?.user.code}`} className='ml-4'>STAFF Check in</Link>
+      </div>
     </section>
   )
 }
