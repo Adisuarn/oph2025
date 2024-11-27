@@ -18,7 +18,7 @@ const timmingMiddleware = new Elysia()
   .state({ start: 0 })
   .onBeforeHandle(({ store }) => (store.start = Date.now()))
   .onAfterHandle(({ path, store: { start } }) => {
-    console.log(`\x1b[32m[Elysia]\x1b[0m ${path} took \x1b[33m${Date.now() - start}ms\x1b[0m to execute`)
+    // console.log(`\x1b[32m[Elysia]\x1b[0m ${path} took \x1b[33m${Date.now() - start}ms\x1b[0m to execute`)
   })
   .as('plugin')
 
