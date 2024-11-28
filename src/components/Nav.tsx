@@ -3,6 +3,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import Link from 'next/link'
 
 const Nav = () => {
   const [hidden, setHidden] = useState(false);
@@ -28,15 +29,21 @@ const Nav = () => {
     <div className="flex items-center justify-between px-6 h-full">
       <div className="text-lg font-bold">Logo</div>
       <nav className="flex space-x-6">
-        <a href="#home" className="hover:underline">
-          Home
-        </a>
-        <a href="#about" className="hover:underline">
-          About
-        </a>
-        <a href="#contact" className="hover:underline">
-          Contact
-        </a>
+        <Link href="/" className="hover:underline">
+          หน้าแรก
+        </Link>
+        <Link href="" className="hover:underline">
+          แผนผังงาน drop down
+        </Link>
+        <Link href="" className="hover:underline">
+          ตารางการแสดง
+        </Link>
+        <Link href="" className="hover:underline">
+          การเดินทาง
+        </Link>
+        <Link href="" className="hover:underline">
+          ข้อมูลเพิ่มเติม
+        </Link>
       </nav>
     </div>
   </motion.div>

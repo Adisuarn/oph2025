@@ -1,5 +1,7 @@
-import React from 'react';
+'use client'
 import { redirect } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+
 // import {
 //   AlertDialog,
 //   AlertDialogAction,
@@ -15,19 +17,21 @@ import { redirect } from 'next/navigation'
 const userData = {
   isStaff: true,
   username: 'Cristiano Ronaldo',
-};
+}
 
 export default function CheckIn({ params }: { params: { checkinId?: string } }) {
   if (!userData.isStaff) redirect('/')
 
+
   return (
-    <section className='h-screen flex flex-col justify-center items-center'>
-      <h1>Check In</h1>
+    <section className="flex h-screen flex-col items-center justify-center">
+      <h1>Staff: {userData.username}</h1>
+
       <p>Code ID: {params.checkinId || 'No ID provided'}</p>
-      <div className='flex items-center justify-around w-28'>
-        <button className='py-3 px-4 bg-blue-50 rounded-full'>Approve</button>
-        <button className='py-3 px-4 bg-blue-50 rounded-full'>Reject</button>
-      {/* <AlertDialog>
+      <div className="flex w-28 items-center justify-around">
+        <button className="rounded-full bg-blue-50 px-4 py-3">Approve</button>
+        <button className="rounded-full bg-blue-50 px-4 py-3">Reject</button>
+        {/* <AlertDialog>
       <AlertDialogTrigger className="font-bold w-full text-center">Test Confirmation</AlertDialogTrigger>
       <AlertDialogContent className="flex flex-col justify-center items-center">
         <AlertDialogHeader className="py-20 px-10">
@@ -45,5 +49,5 @@ export default function CheckIn({ params }: { params: { checkinId?: string } }) 
     </AlertDialog> */}
       </div>
     </section>
-  );
+  )
 }
