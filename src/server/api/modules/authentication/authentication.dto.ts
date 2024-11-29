@@ -6,7 +6,7 @@ export interface IUserData {
   lastname: string
   status: string
   school: string
-  level: string
+  classlvl: string
 }
 
 export const RegisterValidator = t.Object({
@@ -15,5 +15,5 @@ export const RegisterValidator = t.Object({
   lastname: t.String(),
   status: t.String(),
   school: t.String(),
-  level: t.String()
+  classlvl: t.String()
 })

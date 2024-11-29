@@ -7,8 +7,13 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import type { AppRouter } from '~/server/api/root'
 import { createQueryClient } from '~/libs/elysia/query-client'
 import { getBaseUrl } from '~/libs/utils'
+import { env } from '~/env'
 
-export const api = treaty<AppRouter>(getBaseUrl()).api.elysia
+export const api = treaty<AppRouter>(getBaseUrl(), {
+  headers: {
+    'x-api-key': env.NEXT_PUBLIC_API_KEY
+  }
+}).api.elysia
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined
 const getQueryClient = () => {

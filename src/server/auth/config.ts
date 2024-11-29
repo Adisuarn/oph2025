@@ -23,8 +23,10 @@ declare module "next-auth" {
       classlvl: string;
       purpose: string[];
       platform: string[];
+      staff: object;
       isStaff: boolean;
       isRegister: boolean;
+      isTUCMC: boolean;
     } & DefaultSession["user"];
   }
 }

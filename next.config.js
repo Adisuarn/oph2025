@@ -7,6 +7,7 @@ import "./src/env.js";
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  serverExternalPackages: ["puppeteer-core"]
 };
 
 export default config;

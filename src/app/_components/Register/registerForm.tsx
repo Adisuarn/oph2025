@@ -15,7 +15,7 @@ interface RegisterForm {
   lastname: string
   status: string
   school: string
-  level: string
+  classlvl: string
 }
 
 export default function RegisterForm() {
@@ -58,7 +58,7 @@ export default function RegisterForm() {
     lastname: '',
     status: '',
     school: '',
-    level: ''
+    classlvl: ''
   }
 
   const onSubmit = async (values: RegisterForm, { setSubmitting }: any) => {
@@ -97,7 +97,7 @@ export default function RegisterForm() {
     lastname: Yup.string().required('Required'),
     status: Yup.string().required('Required'),
     school: Yup.string().required('Required'),
-    level: Yup.string().required('Required')
+    classlvl: Yup.string().required('Required')
   })
   
   { /* Return Section */}
@@ -242,7 +242,7 @@ export default function RegisterForm() {
                 <div className="mt-3">
                   <label>Level</label>
                   <div>
-                    <Field name="level" as="select" className="border">
+                    <Field name="classlvl" as="select" className="border">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>

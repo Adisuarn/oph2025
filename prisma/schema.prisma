@@ -23,8 +23,10 @@ model User {
   classlvl      String?
   purpose       String[]
   platform      String[]
+  staff         Staff?
   event         Event[]
   isStaff       Boolean   @default(false)
+  isTUCMC       Boolean   @default(false)
   isRegister    Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
@@ -36,7 +38,14 @@ model User {
 type Event {
   day String
   join Boolean
-  dayTime DateTime
+  dayTime String
+  gate String
+}
+
+type Staff {
+  organization String?
+  tag String?
+  gate String?
 }
 
 model Account {
