@@ -16,9 +16,9 @@ const createContext = new Elysia()
 const timmingMiddleware = new Elysia()
   .state({ start: 0 })
   .onBeforeHandle(({ store }) => (store.start = Date.now()))
-  .onAfterHandle(({ path, store: { start }, request: { method }, response: { code } }: { path: string, store: { start: number }, request: { method: string }, response: { code: number } }) => {
-    const status = code >= 400 ? `\x1b[31m${code}` : `\x1b[32m${code}`
-    console.log(`\x1b[32m[Server] [ \x1b[33m${method} / ${status} \x1b[32m] \x1b[0m ${path} took \x1b[33m${Date.now() - start}ms\x1b[0m to execute`)
+  .onAfterHandle(({ path, store: { start }, request: { method }, response: { code, status } }: { path: string, store: { start: number }, request: { method: string }, response: { code?: number, status?: number } }) => {
+    const resStatus = code! >= 400 ? `\x1b[31m${code}` : code! >= 300 ? `\x1b[34m${status}` : `\x1b[32m${status}`
+    console.log(`\x1b[32m[Server] [ \x1b[33m${method} / ${resStatus} \x1b[32m] \x1b[0m ${path} took \x1b[33m${Date.now() - start}ms\x1b[0m to execute`)
   })
   .as('plugin')
 

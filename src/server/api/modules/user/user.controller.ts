@@ -19,20 +19,22 @@ export const getUser = async (email: string): Promise<{ status: number, message:
 }
 
 export const screenshot = async () => {
-  const chromiumPack = "https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar"
-
   const browser = await puppeteer.launch({
-    args: chromium.args,
-    executablePath: await chromium.executablePath(chromiumPack),
-    headless: true
-  })
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath('https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar'),
+    headless: chromium.headless,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 
-  const page = await browser.newPage()
+  const page = await browser.newPage();
 
-  await page.goto('https://www.google.com', { waitUntil: 'networkidle0' })
-  const title = await page.evaluate(() => {
-    return document.title
-  })
+  await page.goto('https://www.google.com');
 
-  return JSON.stringify({ title })
+  const title = await page.title();
+
+  await browser.close();
+
+  return Response.json({
+    title
+  });
 }
