@@ -6,6 +6,7 @@ import { SignIn } from '~/app/_components/signIn'
 import { SignOut } from '~/app/_components/signOut'
 import { auth } from '~/server/auth'
 import { motion } from 'framer-motion'
+import Contacts from '~/app/_components/Contacts'
 
 const Page = async () => {
   const session = await auth()
@@ -56,6 +57,10 @@ const Page = async () => {
         <p>10-11 January 2025</p>
         {session ? <div>It's great to have you {session.user.username}</div> : <SignIn />}
         <Countdown />
+        {session && (<div>
+          <p>Stay Tuned</p>
+          <Contacts />
+        </div>)}
       </section>
     </section>
   )
