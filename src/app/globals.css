@@ -70,3 +70,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+#tos ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  padding-left: 4px; /* Adjust the value as needed */
+  text-indent: -24px; /* Adjust the value based on the bullet point size */
+  margin-left: 24px; /* Should be the same as the text-indent value */
+}

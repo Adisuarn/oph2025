@@ -7,6 +7,7 @@ import { SignOut } from '~/app/_components/signOut'
 import { auth } from '~/server/auth'
 import { motion } from 'framer-motion'
 import Contacts from '~/app/_components/Contacts'
+import { Redirect } from 'next'
 
 const Page = async () => {
   const session = await auth()
@@ -51,16 +52,19 @@ const Page = async () => {
            <Countdown />
          </div>
        )} */}
-      <section className="flex h-screen flex-col items-center justify-center space-y-4 bg-emerald-200">
+      <section className="flex h-screen flex-col items-center justify-center bg-zinc-400 space-y-4">
         <p className='text-2xl'><span className='font-bold'>T</span>riam <span className='font-bold'>U</span>dom</p>
         <p className='text-xl'>OPEN HOUSE</p>
         <p>10-11 January 2025</p>
-        {session ? <div>It's great to have you {session.user.username}</div> : <SignIn />}
+        {session ? <div>It's great to have you {session.user.username}</div> : <Link href='/auth'>ลงทะเบียน</Link>}
         <Countdown />
-        {session && (<div>
+        {session && (
+          <div>
           <p>Stay Tuned</p>
           <Contacts />
-        </div>)}
+          <SignOut />
+        </div>
+      )}
       </section>
     </section>
   )
