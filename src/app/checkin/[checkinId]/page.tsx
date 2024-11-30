@@ -1,6 +1,7 @@
 'use client'
 import { redirect } from 'next/navigation'
 import React, { useEffect, useState, use } from 'react';
+import { auth } from '~/server/auth'
 
 // import {
 //   AlertDialog,
@@ -19,9 +20,10 @@ const userData = {
   username: 'Cristiano Ronaldo',
 }
 
-export default function CheckIn(props: { params: Promise<{ checkinId?: string }> }) {
+export default async function CheckIn(props: { params: Promise<{ checkinId?: string }> }) {
+  const session = await auth()
   const params = use(props.params);
-  if (!userData.isStaff) redirect('/')
+  if (!session?.user.isStaff) redirect('/');
 
   return (
     <section className="flex h-screen flex-col items-center justify-center">

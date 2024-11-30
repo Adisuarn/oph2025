@@ -71,7 +71,7 @@ export default function RegisterForm() {
           ToastType.SUCCESS
         )
         setTimeout(() => {
-          router.push('/')
+          router.push('/e-ticket')
         }, 1500)
       } else {
         toastify(
