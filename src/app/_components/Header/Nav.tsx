@@ -4,6 +4,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import Link from 'next/link'
+import Hamburger from './Hamburger';
 
 const Nav = () => {
   const [hidden, setHidden] = useState(false);
@@ -16,6 +17,8 @@ const Nav = () => {
       setHidden(false);
     }
   });
+
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <motion.div
     variants={{
@@ -28,7 +31,9 @@ const Nav = () => {
   >
     <div className="flex items-center justify-between px-6 h-full">
       <div className="text-lg font-bold">Logo</div>
-      <nav className="flex space-x-6">
+      <nav className="space-x-6 hidden md:flex" 
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}>
         <Link href="/" className="hover:underline">
           หน้าแรก
         </Link>
@@ -45,6 +50,9 @@ const Nav = () => {
           ข้อมูลเพิ่มเติม
         </Link>
       </nav>
+      <div className='md:hidden'>
+        <Hamburger />
+      </div>
     </div>
   </motion.div>
   )
