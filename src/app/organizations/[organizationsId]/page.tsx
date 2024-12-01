@@ -2,14 +2,22 @@ import Link from 'next/link'
 import General from '~/app/_components/General'
 import Organizations from "~/_data/content/organizations.json";
 
-// ดึง data จาก API มาแสดง
-
 export default function Programs({ params }: { params: { organizationsId: string } }) {
   const selection = params.organizationsId
-  console.log(Organizations[0])
+
+  const organization = Organizations.find(
+    (org) => org.key === selection
+  );
+
+  if (!organization) {
+    return <div>Organization not found</div>;
+  }
+
   return (
       <div>
-        <General editFormData={'hi'} review1={'hi'} review2={'hi'} review3={'hi'} reviews={'hi'} />
+        <h1>{organization.name}</h1>
+      <p>{organization.ig}</p>
+        <General editFormData={organization} review1={organization.reviews[0]} review2={organization.reviews[1]} review3={organization.reviews[2]} reviews={organization.reviews.length} />
       </div>
   )
 }

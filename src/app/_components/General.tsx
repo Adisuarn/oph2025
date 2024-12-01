@@ -41,6 +41,26 @@ const General: React.FC<{
   const ReviewAmount = reviews
   const [imageLoaded, setImageLoaded] = useState(false)
 
+  const getContent = (tag: string, editFormData: any) => {
+    switch (tag) {
+      case 'clubs':
+        return editFormData.benefits || '';
+      case 'organizations':
+        return editFormData.position || '';
+      default:
+        return editFormData.courses || '';
+    }
+  };
+  
+  const ContentBox = ({ content }: { content: string }) => (
+    <div
+      dangerouslySetInnerHTML={{ __html: content }}
+      className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
+    ></div>
+  );
+
+  const content = getContent(editFormData.tag, editFormData);
+
   const handleImageLoad = () => {
     setImageLoaded(true)
   }
@@ -124,7 +144,7 @@ const General: React.FC<{
           {/* section1 */}
           <div className="mb-14 mt-12 flex flex-col sm:mt-5 md:mb-20 md:mt-20">
             <div className="flex flex-col items-start justify-between sm:flex-row md:mb-8">
-              {editFormData.tagThai === 'ชมรม' ? (
+              {editFormData.tag === 'clubs' ? (
                 <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
                   <p className="sm:py-1 sm:text-3xl sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.5] lg:py-2 lg:text-7xl lg:leading-[1.3]">
                     ชมรมนี้
@@ -135,7 +155,7 @@ const General: React.FC<{
                     <SLamp1 className="hidden sm:block sm:w-28" />
                   </div>
                 </div>
-              ) : editFormData.tagThai === 'องค์กร' ? (
+              ) : editFormData.tag === 'organizations' ? (
                 <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col sm:items-end">
                   <p className="-mb-2 sm:py-1 sm:text-xs sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.4] lg:py-2 lg:text-6xl lg:leading-[1.3]">
                     องค์กรนี้
@@ -214,7 +234,7 @@ const General: React.FC<{
                   <p className="text-greenText">{editFormData.descimg2}</p>
                 </div>
               </div>
-              {editFormData.tagThai === 'ชมรม' ? (
+              {editFormData.tag === 'clubs' ? (
                 <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col md:ml-4">
                   <p className="sm:text-4xl md:text-5xl lg:text-7xl">ประโยชน์</p>
                   <p className="sm:text-lg md:text-2xl lg:text-4xl">ที่ได้รับ</p>
@@ -223,7 +243,7 @@ const General: React.FC<{
                     <SLamp2 className="hidden sm:block sm:w-28" />
                   </div>
                 </div>
-              ) : editFormData.tagThai === 'องค์กร' ? (
+              ) : editFormData.tag === 'organizations' ? (
                 <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col md:ml-4">
                   <p className="sm:text-lg md:text-5xl lg:text-6xl">ตำแหน่ง</p>
                   <p className="sm:text-lg md:text-2xl lg:text-4xl">/หน้าที่</p>
@@ -242,17 +262,13 @@ const General: React.FC<{
                 </div>
               )}
             </div>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: editFormData.text2 || '',
-              }}
-              className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
-            ></div>
+            <ContentBox content={content} />;
+            
           </div>
           {/* section 3 */}
           <div className="mb-14 mt-3 flex flex-col sm:mt-5 md:mb-20 md:mt-8">
             <div className="flex flex-col items-end justify-between sm:flex-row md:mb-8 md:items-center">
-              {editFormData.tagThai === 'ชมรม' ? (
+              {editFormData.tag === 'clubs' ? (
                 <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
                   <p className="sm:text-5xl md:text-6xl lg:text-7xl">ผลงาน</p>
                   <p className="sm:text-3xl md:text-4xl lg:text-5xl">ของชมรม</p>
@@ -260,7 +276,7 @@ const General: React.FC<{
                     <SLamp3 className="hidden sm:block sm:w-28" />
                   </div>
                 </div>
-              ) : editFormData.tagThai === 'องค์กร' ? (
+              ) : editFormData.tag === 'organizations' ? (
                 <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col sm:items-end">
                   <p className="sm:text-5xl md:text-4xl lg:text-5xl">ผลงาน</p>
                   <p className="sm:text-3xl md:text-3xl lg:text-5xl">ขององค์กร</p>
