@@ -9,11 +9,10 @@ export default {
 		lineHeight: {
 			'extra-loose': '3',
 		  },
-  		fontFamily: {
-  			sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+			fontFamily: {
+				sans: [...fontFamily.sans],
 			  Thai: ['Noto Sans Thai'],
 			  BaiJamjuree: ['Bai Jamjuree'],
-
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

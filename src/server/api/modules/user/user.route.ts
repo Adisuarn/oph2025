@@ -1,5 +1,5 @@
 import { createElysia } from '~/server/api/elysia'
-import { getUser, screenshot } from './user.controller'
+import { getUser } from './user.controller'
 import { error } from 'elysia'
 
 export const userRouter = createElysia({ prefix: '/user' })
@@ -12,8 +12,4 @@ export const userRouter = createElysia({ prefix: '/user' })
   })
   .get('/check-username/:username', async () => {
     'this use to check username'
-  })
-  .post('/screenshot', async () => {
-    const response = await screenshot()
-    return response
   })
