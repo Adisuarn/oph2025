@@ -27,7 +27,7 @@ export default async function CheckIn(props: { params: Promise<{ checkinId?: str
 
   return (
     <section className="flex h-screen flex-col items-center justify-center">
-      <h1>Staff: {userData.username}</h1>
+      <h1>Staff: {session.user.firstname} {session.user.lastname}</h1>
 
       <p>Code ID: {params.checkinId || 'No ID provided'}</p>
       <div className="flex w-28 items-center justify-around">

@@ -9,6 +9,7 @@ const page = async () => {
   return (
     <section className="flex h-screen flex-col items-center justify-center">
       <div className='py-5 px-8 rounded-xl bg-blue-50 space-y-2'>
+      <p>{session?.user.email}</p>
       <div>Hello {session?.user.firstname} {session?.user.lastname}</div>
       <div>Log in code : {session?.user.code}</div>
       <QRCodeSVG

@@ -21,7 +21,7 @@ const Contacts = () => {
     )
   }
 
-  return <div>
+  return <div className='flex'>
     <Contact
           src="/assets/logo/facebook.png"
           alt="Facebook"

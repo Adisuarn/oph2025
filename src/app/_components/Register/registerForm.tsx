@@ -28,14 +28,6 @@ export default function RegisterForm() {
   { /* Step Function */ }
   const totalStep = 2
 
-  const nextStep = () => {
-    setStep(step + 1)
-  }
-
-  const prevStep = () => {
-    setStep(step - 1)
-  }
-
   useEffect(() => {
     setProgressPercentage((step) / (totalStep) * 100)
   }, [step])
@@ -51,7 +43,6 @@ export default function RegisterForm() {
     return <div>Bad Request</div>
   }
 
- {/* Formik Initialize*/}
   const initialValues = {
     username: '',
     firstname: '',
@@ -100,7 +91,6 @@ export default function RegisterForm() {
     classlvl: Yup.string().required('Required')
   })
   
-  { /* Return Section */}
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div>This is Register Page</div>
@@ -253,7 +243,7 @@ export default function RegisterForm() {
                   </div>
                 </div>
                 
-                <button type="button" className="mt-3" onClick={nextStep}>
+                <button type="button" className="mt-3" onClick={() => setStep(step + 1)}>
                   Next
                 </button>
               </>
@@ -277,7 +267,7 @@ export default function RegisterForm() {
                     </label>
                   </div>
                 </div>
-                <button type="button" onClick={prevStep}>
+                <button type="button" onClick={() => setStep(step - 1)}>
                   Back
                 </button>
                 <div className="mt-3">

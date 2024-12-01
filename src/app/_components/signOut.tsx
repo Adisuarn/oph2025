@@ -10,7 +10,7 @@ export function SignOut() {
     >
       <button
         type="submit"
-        className="relative px-4 py-2 font-semibold text-zinc-400 underline hover:text-zinc-600 transition-colors"
+        className="relative px-4 py-2 font-semibold text-white underline hover:text-zinc-600 transition-colors"
       >
         Sign Out
       </button>

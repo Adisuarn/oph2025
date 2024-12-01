@@ -21,14 +21,19 @@ const Page = async () => {
         <p className='text-xl'>OPEN HOUSE</p>
         <p>10-11 January 2025</p>
         <Countdown />
-        {session ? <div>It's great to have you {session.user.username}</div> : <Link href='/auth'>ลงทะเบียน</Link>}
+        {session ? <div>It's great to have you <span className='font-bold'>{session.user.username}</span></div> : <Link href='/auth'>ลงทะเบียน</Link>}
           <div>
           <p>Stay Tuned</p>
           <Contacts />
-        </div>
         {session && (
+          <div className='flex flex-col justify-center items-center space-y-4'>
+            <div className='flex justify-around items-center'>
+          </div>
+            <Link href='/e-ticket' className='text-white font-bold'>Your E-Ticket</Link>
           <SignOut />
+          </div>
       )}
+        </div>
       </section>
     </section>
   )

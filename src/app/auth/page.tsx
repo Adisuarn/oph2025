@@ -8,9 +8,8 @@ import { auth } from '~/server/auth';
 const Page = async () => {
   const session = await auth();
 
-  if (session) {
-    redirect('/register?email=' + session?.user.email);
-  }
+  if (session) redirect('/register?email=' + session?.user.email);
+  // if (session.user.isRegister) redirect('e-ticket');
 
   return (
     <section className="flex h-screen flex-col items-center justify-center bg-black text-white">
