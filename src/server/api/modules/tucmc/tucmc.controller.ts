@@ -41,6 +41,39 @@ export const getStaff = async (email: string): Promise<{ status: number, message
   }
 }
 
-export const getStats = () => {
-  
+export const getStats = async () => {
+  try {
+    const userOnSite = await prisma.user.count()
+    const userOnDay1 = await prisma.user.count({
+      where: {
+        event: {
+          some: {
+            day: "1",
+            join: true
+          }
+        }
+      }
+    })
+    const userOnDay2 = await prisma.user.count({
+      where: {
+        event: {
+          some: {
+            day: "2",
+            join: true
+          }
+        }
+      }
+    })
+    const joinedUser = userOnDay1 + userOnDay2
+    const data = {
+      "ผู้ใช้งานบนเว็บ": userOnSite,
+      "ผู้ที่มางานวันแรก": userOnDay1,
+      "ผู้ที่มางานวันที่สอง": userOnDay2,
+      "ผู้ที่มางานรวมสองวัน": joinedUser
+    }
+    return { status: 200, message: 'Get Stats Successfully', data: data }
+  } catch (error) {
+    console.log(error)
+    return { status: 500, message: 'Failed to get stats' }
+  }
 }
