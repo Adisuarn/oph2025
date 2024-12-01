@@ -1,8 +1,18 @@
 import { prisma } from "~/server/db/prisma"
-import { User } from "@prisma/client"
-import { getDate, Gates } from "~/server/utils"
+import { getDate } from "~/server/utils"
+import { User as IUser } from "next-auth"
 
-export const confirmCode = async (user: User, day: string, code: string): Promise<{ status: number, message: string }> => {
+export const confirmCode = async (staffUser: IUser, day: string, code: string): Promise<{ status: number, message: string }> => {
+  const staffData = await prisma.user.findUnique({
+    where: { email: staffUser.email! }
+  })
+  if (!staffData?.staff) return { status: 404, message: 'Staff Data Not Found' }
+  const user = await prisma.user.findUnique({
+    where: { code }
+  })
+  if (!user?.code) return { status: 404, message: "User's code not found" }
+  if (user.event.length >= 2) return { status: 400, message: 'User already joined on both day'}
+  
   // switch (day) {
   //   case '1': {
   //     if (!getDate().includes('2025/01/10')) return { status: 400, message: 'Time on day 1 is not correct' }
@@ -16,31 +26,34 @@ export const confirmCode = async (user: User, day: string, code: string): Promis
   //     return { status: 400, message: 'Invalid Day' }
   //   }
   // }
+
   if (user.event.filter(e => e.day === day).length > 0) return { status: 400, message: 'Already Confirmed' }
   try {
     await prisma.user.upsert({
       where: {
         email: user.email!,
-        code
+        code,
       },
       update: {
         event: {
-          day,
-          join: true,
-          dayTime: getDate(),
-          gate: Gates.Phayathai
+          push: {
+            day,
+            join: true,
+            dayTime: getDate(),
+            gate: staffData.staff.gate!,
+          }
         }
       },
       create: {
-        event: {
+        event: [{
           day,
           join: true,
           dayTime: getDate(),
-          gate: Gates.Phayathai
-        }
-      }
+          gate: staffData.staff.gate!,
+        }]
+      },
     })
-    return { status: 200, message: 'Code Confirmed' }
+    return { status: 200, message: `Code Confirmed on day ${day}` }
   } catch (error) {
     console.log(error)
     return { status: 500, message: 'Error while confirming code' }

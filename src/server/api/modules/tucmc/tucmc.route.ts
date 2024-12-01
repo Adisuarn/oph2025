@@ -7,20 +7,22 @@ export const tucmcRouter = createElysia({ prefix: '/tucmc' })
   .onBeforeHandle(async ({ session }) => { 
     if (!session.user.isTUCMC) return error(403, 'TUCMC Access Denied')
   })
-  .get('/stats', async () => {
+  .get('/stats', async () => 
     'this use to get stats'
-  })
-  .patch('/add-staff', async ({ session, body }) => {
-    const response = await addStaff(session.user.email, body)
+  )
+  .patch('/add-staff', async ({ body }) => {
+    const response = await addStaff(body.email, body)
     if (response.status !== 200) {
       return error(response.status, response.message)
     }
     return response
-  }, {
+  },
+    {
     body: RegStaffValidator
-  }) 
-  .get('/get-staff', async ({ session }) => {
-    const response = await getStaff(session.user.email)
+    }
+  ) 
+  .get('/get-staff/:email', async ({ params: { email } }) => {
+    const response = await getStaff(email)
     if (response.status !== 200) {
       return error(response.status, response.message)
     }

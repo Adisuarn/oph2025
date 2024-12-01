@@ -4,11 +4,7 @@ import { registerUser } from './authentication.controller'
 import { RegisterValidator } from './authentication.dto'
 
 export const authRouter = createElysia({ prefix: '/authentication'})
-  .patch('/', async ({ body, session, prisma }) => {
-    const isUserDuplicate = await prisma.user.findUnique({
-      where: { username: body.username }
-    })
-    if (isUserDuplicate) return error(400, 'Username already exists')
+  .patch('/', async ({ body, session }) => {
     const response = await registerUser(body, session.user.email)
     if (response.status !== 200) {
       return error(response.status, response.message)

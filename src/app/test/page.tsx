@@ -4,7 +4,7 @@ import DownloadImage from '../_components/DownloadButton'
 const TestPage = async () => {
   return (
     <div className="p-4">
-      <h1>Download Your Greeting</h1>
+      <h1>Download Your E-ticket</h1>
       <DownloadImage title="Test" />
     </div>
   )

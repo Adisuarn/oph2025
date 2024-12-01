@@ -20,7 +20,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
       />
       <meta
         name="keywords"
-        content="Open House, Triam Udom Suksa, Education, School Events, Thailand"
+        content="Open House, Triam Udom Suksa, Education, School Events, Thailand, 2025"
       />
       <meta name="author" content="Triam Udom Suksa School" />
       

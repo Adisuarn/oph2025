@@ -17,8 +17,8 @@ const timmingMiddleware = new Elysia()
   .state({ start: 0 })
   .onBeforeHandle(({ store }) => (store.start = Date.now()))
   .onAfterHandle(({ path, store: { start }, request: { method }, response: { code, status } }: { path: string, store: { start: number }, request: { method: string }, response: { code?: number, status?: number } }) => {
-    const resStatus = code! >= 400 ? `\x1b[31m${code}` : code! >= 300 ? `\x1b[34m${status}` : `\x1b[32m${status}`
-    console.log(`\x1b[32m[Server] [ \x1b[33m${method} | ${resStatus} \x1b[32m] \x1b[0m ${path} took \x1b[33m${Date.now() - start}ms\x1b[0m to execute`)
+    const resStatus = code! >= 400 ? `\x1b[31m${code}` : code! >= 300 ? `\x1b[34m${status}` : `\x1b[32m${status || 200}`
+    console.log(`\x1b[32m[Server] [ \x1b[33m${method} \x1b[37m| ${resStatus} \x1b[32m] \x1b[0m ${path} took \x1b[33m${Date.now() - start}ms\x1b[0m to execute`)
   })
   .as('plugin')
 
@@ -27,6 +27,7 @@ const globalGuard = new Elysia()
     if (headers.get('x-api-key') !== env.NEXT_PUBLIC_API_KEY) 
       return error(401, "Incorrect API key provided")
   })
+  .as('plugin')
 
 export const createElysia = <P extends string, S extends boolean>(options?: ElysiaConfig<P, S>) =>
   new Elysia({
