@@ -8,11 +8,11 @@
     "ig": "tucmcIG",
     "fb": "tucmcFB",
     "others": "tucmcOther",
-    "activities": "<p>hello1</p>",
-    "position": "<p>hello2</p>",
-    "working": "<p>hello3</p>",
+    "activities": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>",
+    "position": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>",
+    "working": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>",
     "captureimg1": "https://i.imgur.com/ULuHEdH.jpeg",
-    "descimg1": "testdesc1",
+    "descimg1": "testtest",
     "captureimg2": "https://i.imgur.com/KuxBCeH.jpeg",
     "descimg2": "testdesc2",
     "captureimg3": "https://i.imgur.com/Kw59vJ8.png",
@@ -20,10 +20,11 @@
     "reviews": [
       {
         "count": "1",
+        "profile": "https://i.imgur.com/uEfaK6W.png",
         "nick": "testname1",
         "gen": "test1",
         "contact": "testcontact1",
-        "content": "<p>testreview1</p>"
+        "content": ""
       }
     ]
   },
@@ -48,6 +49,7 @@
     "reviews": [
       {
         "count": "1",
+        "profile": "https://i.imgur.com/CyB3ZP8.jpeg",
         "nick": "มินนี่",
         "gen": "86",
         "contact": "IG: min.ganese",
@@ -55,6 +57,7 @@
       },
       {
         "count": "2",
+        "profile": "https://i.imgur.com/UF8HIsu.jpeg",
         "nick": "เอเจ",
         "gen": "85.5",
         "contact": "IG: chajwa_tan",
@@ -62,6 +65,7 @@
       },
       {
         "count": "3",
+        "profile": "https://i.imgur.com/2OSuFsi.jpeg",
         "nick": "อาร์ตี้",
         "gen": "87",
         "contact": "IG: wonderingtn",
@@ -90,6 +94,7 @@
     "reviews": [
       {
         "count": "1",
+        "profile": "https://i.imgur.com/toSXV1D.jpeg",
         "nick": "กานติมา ไทรงาม (ครีม)",
         "gen": "85",
         "contact": "IG: ctwentythird",
@@ -97,6 +102,7 @@
       },
       {
         "count": "2",
+        "profile": "https://i.imgur.com/0IOD3xx.jpeg",
         "nick": "รัตติกาญจน์ สำลีพันธุ์ (มีน)",
         "gen": "86",
         "contact": "IG: meankindacool",
@@ -104,6 +110,7 @@
       },
       {
         "count": "3",
+        "profile": "https://i.imgur.com/vwkGvod.jpeg",
         "nick": "อาภัสรา มากทุ่งแร่ (นิวนี่)",
         "gen": "86",
         "contact": "IG: newniiapsy_",
@@ -132,6 +139,7 @@
     "reviews": [
       {
         "count": "1",
+        "profile": "https://i.imgur.com/L6cXnum.jpeg",
         "nick": "ธาม",
         "gen": "85",
         "contact": "IG: tthymept",
@@ -139,6 +147,7 @@
       },
       {
         "count": "2",
+        "profile": "https://i.imgur.com/7zQ3jp7.jpeg",
         "nick": "ซีม",
         "gen": "86",
         "contact": "IG: kit0aur",
@@ -146,6 +155,7 @@
       },
       {
         "count": "3",
+        "profile": "https://i.imgur.com/URmHPb0.jpeg",
         "nick": "อิน",
         "gen": "86",
         "contact": "IG: ruephawat",
@@ -174,6 +184,7 @@
     "reviews": [
       {
         "count": "1",
+        "profile": "https://i.imgur.com/TkqGlGi.jpeg",
         "nick": "กรณ์",
         "gen": "86",
         "contact": "IG : kolkornkon_",
@@ -181,6 +192,7 @@
       },
       {
         "count": "2",
+        "profile": "https://i.imgur.com/L6m8a9p.jpeg",
         "nick": "สีน้ำ",
         "gen": "86",
         "contact": "IG : itsnatkamon",
@@ -188,6 +200,7 @@
       },
       {
         "count": "3",
+        "profile": "https://i.imgur.com/zSrIob0.jpeg",
         "nick": "ไทคูณ",
         "gen": "85",
         "contact": "IG : tycoon.png",

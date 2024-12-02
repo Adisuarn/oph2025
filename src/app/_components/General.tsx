@@ -41,7 +41,142 @@ const General: React.FC<{
   const ReviewAmount = reviews
   const [imageLoaded, setImageLoaded] = useState(false)
 
-  const getContent = (tag: string, editFormData: any) => {
+  const getTagContent1 = (tag: string) => {
+    switch (tag) {
+      case 'clubs':
+        return {
+          titles: ['ชมรมนี้', 'ทำอะไร'],
+          textClasses: ['sm:py-1 sm:text-3xl sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.5] lg:py-2 lg:text-7xl lg:leading-[1.3]', 'sm:text-3xl md:text-5xl lg:text-7xl'],
+        };
+      case 'organizations':
+        return {
+          titles: ['องค์กรนี้', 'ทำอะไร'],
+          textClasses: ['-mb-2 sm:py-1 sm:text-xs sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.4] lg:py-2 lg:text-6xl lg:leading-[1.3]', 'sm:text-xl md:text-4xl lg:text-5xl'],
+        };
+      default:
+        return {
+          titles: ['การรับสมัคร', 'และ', 'การสอบเข้า'],
+          textClasses: ['sm:text-xs md:text-4xl lg:text-5xl font-Thai', 'sm:text-3xl md:text-6xl lg:text-7xl', 'sm:text-xl md:text-4xl lg:text-5xl'],
+        };
+    }
+  };
+  
+  const TagContent1 = ({
+    titles,
+    textClasses,
+  }: {
+    titles: string[];
+    textClasses: string[];
+  }) => (
+    <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
+      {titles.map((title, index) => (
+        <p key={index} className={textClasses[index]}>
+          {title}
+        </p>
+      ))}
+      <div className="flex justify-center">
+        <SLamp1 className="hidden sm:block sm:w-28" />
+      </div>
+    </div>
+  );
+  
+  const getTagContent2 = (tag: string) => {
+    switch (tag) {
+      case 'clubs':
+        return {
+          titles: ['ประโยชน์', 'ที่ได้รับ', 'จากการเข้าชมรม'],
+          textClasses: ['sm:text-4xl md:text-5xl lg:text-7xl', 'sm:text-lg md:text-2xl lg:text-4xl', 'sm:-mt-2 sm:text-lg md:text-lg lg:text-3xl'],
+        };
+      case 'organizations':
+        return {
+          titles: ['ตำแหน่ง', '/หน้าที่'],
+          textClasses: ['sm:text-lg md:text-5xl lg:text-6xl', 'sm:text-lg md:text-2xl lg:text-4xl'],
+        };
+      default:
+        return {
+          titles: ['วิชา /', 'หลักสูตรเพิ่มเติม', 'ที่เรียน'],
+          textClasses: ['sm:text-2xl md:text-7xl', 'sm:text-lg md:text-2xl', 'sm:text-lg md:text-2xl'],
+        };
+    }
+  };
+  
+  const TagContent2 = ({
+    titles,
+    textClasses,
+  }: {
+    titles: string[];
+    textClasses: string[];
+  }) => (
+    <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col md:ml-4">
+      {titles.map((title, index) => (
+        <p key={index} className={textClasses[index]}>
+          {title}
+        </p>
+      ))}
+      <div className="flex justify-center 2xl:justify-start">
+        <SLamp2 className="hidden sm:block sm:w-28" />
+      </div>
+    </div>
+  );
+
+  const getTagContent3 = (tag: string) => {
+    switch (tag) {
+      case 'clubs':
+        return {
+          titles: ['ผลงาน', 'ของชมรม'],
+          textClasses: ['sm:text-5xl md:text-6xl lg:text-7xl', 'sm:text-3xl md:text-4xl lg:text-5xl'],
+        };
+      case 'organizations':
+        return {
+          titles: ['ผลงาน', 'ขององค์กร'],
+          textClasses: ['sm:text-5xl md:text-4xl lg:text-5xl', 'sm:text-3xl md:text-3xl lg:text-5xl'],
+        };
+      default:
+        return {
+          titles: ['ความน่าสนใจ', 'ของ', 'สายการเรียน'],
+          textClasses: ['-mb-3 sm:text-xl sm:leading-[2] md:text-4xl md:leading-[1.7] lg:text-5xl lg:leading-[1.5]', 'sm:text-5xl md:text-6xl lg:text-7xl', 'sm:text-3xl md:text-4xl lg:text-5xl'],
+        };
+    }
+  };
+  
+  const TagContent3 = ({
+    titles,
+    textClasses,
+  }: {
+    titles: string[];
+    textClasses: string[];
+  }) => (
+    <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
+      {titles.map((title, index) => (
+        <p key={index} className={textClasses[index]}>
+          {title}
+        </p>
+      ))}
+      <div className="flex justify-center">
+        <SLamp3 className="hidden sm:block sm:w-28" />
+      </div>
+    </div>
+  );
+  
+  const getContent1 = (tag: string, editFormData: any) => {
+    switch (tag) {
+      case 'clubs':
+        return editFormData.activities || '';
+      case 'organizations':
+        return editFormData.activities || '';
+      default:
+        return editFormData.admissions || '';
+    }
+  };
+  
+  const ContentBox1 = ({ content1 }: { content1: string }) => (
+    <div
+      dangerouslySetInnerHTML={{ __html: content1 }}
+      className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
+    ></div>
+  );
+
+  const getContent2 = (tag: string, editFormData: any) => {
     switch (tag) {
       case 'clubs':
         return editFormData.benefits || '';
@@ -52,14 +187,38 @@ const General: React.FC<{
     }
   };
   
-  const ContentBox = ({ content }: { content: string }) => (
+  const ContentBox2 = ({ content2 }: { content2: string }) => (
     <div
-      dangerouslySetInnerHTML={{ __html: content }}
+      dangerouslySetInnerHTML={{ __html: content2 }}
       className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
     ></div>
   );
 
-  const content = getContent(editFormData.tag, editFormData);
+  const getContent3 = (tag: string, editFormData: any) => {
+    switch (tag) {
+      case 'clubs':
+        return editFormData.working || '';
+      case 'organizations':
+        return editFormData.working || '';
+      default:
+        return editFormData.interests || '';
+    }
+  };
+  
+  const ContentBox3 = ({ content3 }: { content3: string }) => (
+    <div
+      dangerouslySetInnerHTML={{ __html: content3 }}
+      className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
+    ></div>
+  );
+
+  const { titles: titles1, textClasses: textClasses1 } = getTagContent1(editFormData.tag);
+  const { titles: titles2, textClasses: textClasses2 } = getTagContent2(editFormData.tag);
+  const { titles: titles3, textClasses: textClasses3 } = getTagContent3(editFormData.tag);
+
+  const content1 = getContent1(editFormData.tag, editFormData);
+  const content2 = getContent2(editFormData.tag, editFormData);
+  const content3 = getContent3(editFormData.tag, editFormData);
 
   const handleImageLoad = () => {
     setImageLoaded(true)
@@ -81,11 +240,11 @@ const General: React.FC<{
       <section className="relative z-40 mx-12 pt-48 sm:mx-28 sm:pt-72 md:mx-36 md:pt-[300px] lg:mx-48 xl:mx-60 2xl:pt-[550px]">
         <section className="flex items-center justify-between">
           <div className="flex items-center justify-center space-x-1 transition-all hover:scale-105">
-            <Link href={`/editingform/${editFormData.tag}`}>
+            <Link href='/'>
               <BackArrow className="h-5 w-5 text-heroMiddle sm:h-8 sm:w-8 md:h-10 md:w-10" />
             </Link>
             <Link
-              href={`/editingform/${editFormData.tag}`}
+              href='/'
               className="text-xs text-heroMiddle sm:text-lg md:text-2xl"
             >
               ย้อนกลับ
@@ -144,38 +303,7 @@ const General: React.FC<{
           {/* section1 */}
           <div className="mb-14 mt-12 flex flex-col sm:mt-5 md:mb-20 md:mt-20">
             <div className="flex flex-col items-start justify-between sm:flex-row md:mb-8">
-              {editFormData.tag === 'clubs' ? (
-                <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
-                  <p className="sm:py-1 sm:text-3xl sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.5] lg:py-2 lg:text-7xl lg:leading-[1.3]">
-                    ชมรมนี้
-                  </p>
-
-                  <p className="sm:text-3xl md:text-5xl lg:text-7xl">ทำอะไร</p>
-                  <div className="flex justify-center">
-                    <SLamp1 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              ) : editFormData.tag === 'organizations' ? (
-                <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col sm:items-end">
-                  <p className="-mb-2 sm:py-1 sm:text-xs sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.4] lg:py-2 lg:text-6xl lg:leading-[1.3]">
-                    องค์กรนี้
-                  </p>
-
-                  <p className="sm:text-xl md:text-4xl lg:text-5xl">ทำอะไร</p>
-                  <div className="flex justify-center">
-                    <SLamp1 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              ) : (
-                <div className="flex bg-gradient-to-b  lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
-                  <p className="sm:text-xs md:text-4xl lg:text-5xl font-Thai">การรับสมัคร</p>
-                  <p className="sm:text-3xl md:text-6xl lg:text-7xl">และ</p>
-                  <p className="sm:text-xl md:text-4xl lg:text-5xl">การสอบเข้า</p>
-                  <div className="flex justify-center">
-                    <SLamp1 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              )}
+            <TagContent1 titles={titles1} textClasses={textClasses1} />
               <div className="relative z-10 sm:w-[50vw] md:w-[60vw]">
                 <div className="absolute -left-12 -top-32 -z-10 sm:-left-[344px] md:-left-[490px] lg:top-0">
                   <Stainedglass className="w-16 sm:w-32 lg:hidden" />
@@ -185,7 +313,6 @@ const General: React.FC<{
                 </div>
                 <Image
                   className="mx-auto mb-3 h-44 w-[80vw] rounded-lg object-cover transition-opacity duration-500 sm:h-48 sm:w-2/3 md:h-60 md:w-[50vw] lg:h-72 xl:w-[40vw] 2xl:w-[27vw]"
-                  //src={localStorage.getItem("check") ? localStorage.getItem("capimg1") : editFormData.captureimg1 || ''}
                   src={editFormData.captureimg1 || ''}
                   alt="uploaded photo"
                   width={800}
@@ -203,12 +330,7 @@ const General: React.FC<{
                 </div>
               </div>
             </div>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: editFormData.text1 || 'hello world',
-              }}
-              className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
-            ></div>
+            <ContentBox1 content1={content1} /> 
           </div>
           {/* section 2 */}
           <div className="mb-14 mt-3 flex flex-col sm:mt-5 md:mb-20 md:mt-8">
@@ -234,68 +356,14 @@ const General: React.FC<{
                   <p className="text-greenText">{editFormData.descimg2}</p>
                 </div>
               </div>
-              {editFormData.tag === 'clubs' ? (
-                <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col md:ml-4">
-                  <p className="sm:text-4xl md:text-5xl lg:text-7xl">ประโยชน์</p>
-                  <p className="sm:text-lg md:text-2xl lg:text-4xl">ที่ได้รับ</p>
-                  <p className="sm:-mt-2 sm:text-lg md:text-lg lg:text-3xl">จากการเข้าชมรม</p>
-                  <div className="flex justify-center 2xl:justify-start">
-                    <SLamp2 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              ) : editFormData.tag === 'organizations' ? (
-                <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col md:ml-4">
-                  <p className="sm:text-lg md:text-5xl lg:text-6xl">ตำแหน่ง</p>
-                  <p className="sm:text-lg md:text-2xl lg:text-4xl">/หน้าที่</p>
-                  <div className="flex justify-center 2xl:justify-start">
-                    <SLamp2 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              ) : (
-                <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col md:ml-4">
-                  <p className="sm:text-2xl md:text-7xl">วิชา /</p>
-                  <p className="sm:text-lg md:text-2xl">หลักสูตรเพิ่มเติม</p>
-                  <p className="sm:text-lg md:text-2xl">ที่เรียน</p>
-                  <div className="flex justify-center 2xl:justify-start">
-                    <SLamp2 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              )}
+              <TagContent2 titles={titles2} textClasses={textClasses2} />
             </div>
-            <ContentBox content={content} />;
-            
+            <ContentBox2 content2={content2} /> 
           </div>
           {/* section 3 */}
           <div className="mb-14 mt-3 flex flex-col sm:mt-5 md:mb-20 md:mt-8">
             <div className="flex flex-col items-end justify-between sm:flex-row md:mb-8 md:items-center">
-              {editFormData.tag === 'clubs' ? (
-                <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
-                  <p className="sm:text-5xl md:text-6xl lg:text-7xl">ผลงาน</p>
-                  <p className="sm:text-3xl md:text-4xl lg:text-5xl">ของชมรม</p>
-                  <div className="flex justify-center">
-                    <SLamp3 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              ) : editFormData.tag === 'organizations' ? (
-                <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col sm:items-end">
-                  <p className="sm:text-5xl md:text-4xl lg:text-5xl">ผลงาน</p>
-                  <p className="sm:text-3xl md:text-3xl lg:text-5xl">ขององค์กร</p>
-                  <div className="flex justify-center">
-                    <SLamp3 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              ) : (
-                <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
-                  <p className="-mb-3 sm:text-xl sm:leading-[2] md:text-4xl md:leading-[1.7] lg:text-5xl lg:leading-[1.5]">
-                    ความน่าสนใจ
-                  </p>
-                  <p className="sm:text-5xl md:text-6xl lg:text-7xl">ของ</p>
-                  <p className="sm:text-3xl md:text-4xl lg:text-5xl">สายการเรียน</p>
-                  <div className="flex justify-center">
-                    <SLamp3 className="hidden sm:block sm:w-28" />
-                  </div>
-                </div>
-              )}
+            <TagContent3 titles={titles3} textClasses={textClasses3} />
               <div className="relative z-10 sm:w-[50vw] md:w-[60vw]">
                 <div className="absolute -left-10 -top-60 -z-10">
                   <Lamp className="w-32 sm:hidden" />
@@ -321,12 +389,7 @@ const General: React.FC<{
                 </div>
               </div>
             </div>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: editFormData.text3 || '',
-              }}
-              className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
-            ></div>
+            <ContentBox3 content3={content3} /> 
           </div>
           {/* section 3 */}
 
@@ -477,9 +540,9 @@ const General: React.FC<{
             )}
           </section>
 
-            <div className='mt-40'>
+            {/* <div className='mt-40'>
             <Randomizer />
-            </div>
+            </div> */}
 
         </section>
       </section>
