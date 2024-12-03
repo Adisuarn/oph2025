@@ -24,6 +24,7 @@ declare module "next-auth" {
       purpose: string[];
       platform: string[];
       staff: object;
+      event: object[];
       isStaff: boolean;
       isRegister: boolean;
       isTUCMC: boolean;

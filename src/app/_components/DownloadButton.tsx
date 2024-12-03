@@ -7,7 +7,7 @@ interface DownloadImageProps {
 export default function DownloadImage({ title = 'Friend' }: DownloadImageProps) {
   const handleDownload = async () => {
     try {
-      const response = await fetch(`/api/og?title=${encodeURIComponent(title)}`)
+      const response = await fetch(`/api/e-ticket?title=${encodeURIComponent(title)}`)
       const blob = await response.blob()
 
       const url = window.URL.createObjectURL(blob)
