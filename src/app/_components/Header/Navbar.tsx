@@ -28,7 +28,7 @@ import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
 // } from '../ui/dropdown-menu'
 import Hamburger from './Hamburger'
 
-const Nav = () => {
+const Navbar = () => {
   const [hidden, setHidden] = useState(false)
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -90,4 +90,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default Navbar
