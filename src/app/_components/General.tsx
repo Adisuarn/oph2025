@@ -41,7 +41,7 @@ const General: React.FC<{
   const ReviewAmount = reviews
   const [imageLoaded, setImageLoaded] = useState(false)
 
-  const getTagContent1 = (tag: string) => {
+  const getQues1 = (tag: string) => {
     switch (tag) {
       case 'clubs':
         return {
@@ -61,7 +61,7 @@ const General: React.FC<{
     }
   };
   
-  const TagContent1 = ({
+  const Ques1 = ({
     titles,
     textClasses,
   }: {
@@ -80,7 +80,7 @@ const General: React.FC<{
     </div>
   );
   
-  const getTagContent2 = (tag: string) => {
+  const getQuest2 = (tag: string) => {
     switch (tag) {
       case 'clubs':
         return {
@@ -100,7 +100,7 @@ const General: React.FC<{
     }
   };
   
-  const TagContent2 = ({
+  const Quest2 = ({
     titles,
     textClasses,
   }: {
@@ -205,15 +205,15 @@ const General: React.FC<{
     }
   };
   
-  const ContentBox3 = ({ content3 }: { content3: string }) => (
+  const Quest3 = ({ content3 }: { content3: string }) => (
     <div
       dangerouslySetInnerHTML={{ __html: content3 }}
       className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
     ></div>
   );
 
-  const { titles: titles1, textClasses: textClasses1 } = getTagContent1(editFormData.tag);
-  const { titles: titles2, textClasses: textClasses2 } = getTagContent2(editFormData.tag);
+  const { titles: titles1, textClasses: textClasses1 } = getQues1(editFormData.tag);
+  const { titles: titles2, textClasses: textClasses2 } = getQuest2(editFormData.tag);
   const { titles: titles3, textClasses: textClasses3 } = getTagContent3(editFormData.tag);
 
   const content1 = getContent1(editFormData.tag, editFormData);
@@ -231,9 +231,6 @@ const General: React.FC<{
       <div className="absolute -top-36 left-0 z-10 w-full overflow-hidden">
         <BigUppercurve className="hidden w-full md:h-[50vw] lg:block" />
       </div>
-      {/* <div className="absolute -top-[74px]">
-        <FallingLamp className="w-[100vw] lg:hidden" />
-      </div> */}
       <div className="absolute right-0 z-0 overflow-hidden lg:top-0 xl:top-[218px] 2xl:top-[500px]">
         <ClubFallingLamp className="hidden lg:block lg:w-[270px] xl:w-80" />
       </div>
@@ -269,7 +266,6 @@ const General: React.FC<{
                     สมาชิก
                   </p>
                   <p className="from-19% to-94% bg-gradient-to-b from-[#75B667] via-[#15786C] via-80% to-[#0C453E] bg-clip-text text-xl font-bold text-transparent sm:text-6xl">
-                    {/* {localStorage.getItem("check") ? localStorage.getItem("Members") : editFormData.members} */}
                     {editFormData.members}
                   </p>
                 </div>
@@ -303,7 +299,7 @@ const General: React.FC<{
           {/* section1 */}
           <div className="mb-14 mt-12 flex flex-col sm:mt-5 md:mb-20 md:mt-20">
             <div className="flex flex-col items-start justify-between sm:flex-row md:mb-8">
-            <TagContent1 titles={titles1} textClasses={textClasses1} />
+            <Ques1 titles={titles1} textClasses={textClasses1} />
               <div className="relative z-10 sm:w-[50vw] md:w-[60vw]">
                 <div className="absolute -left-12 -top-32 -z-10 sm:-left-[344px] md:-left-[490px] lg:top-0">
                   <Stainedglass className="w-16 sm:w-32 lg:hidden" />
@@ -312,7 +308,7 @@ const General: React.FC<{
                   <BigStainedGlass className="hidden sm:w-32 md:w-48 lg:block xl:w-52 2xl:w-72" />
                 </div>
                 <Image
-                  className="mx-auto mb-3 h-44 w-[80vw] rounded-lg object-cover transition-opacity duration-500 sm:h-48 sm:w-2/3 md:h-60 md:w-[50vw] lg:h-72 xl:w-[40vw] 2xl:w-[27vw]"
+                  className="mx-auto mb-3 h-44 w-[80vw] rounded-lg object-cover transition-opacity duration-500 sm:h-52 sm:w-2/3 md:h-60 md:w-[50vw] lg:h-72 xl:w-[40vw] 2xl:w-[27vw]"
                   src={editFormData.captureimg1 || ''}
                   alt="uploaded photo"
                   width={800}
@@ -356,7 +352,7 @@ const General: React.FC<{
                   <p className="text-greenText">{editFormData.descimg2}</p>
                 </div>
               </div>
-              <TagContent2 titles={titles2} textClasses={textClasses2} />
+              <Quest2 titles={titles2} textClasses={textClasses2} />
             </div>
             <ContentBox2 content2={content2} /> 
           </div>
@@ -389,7 +385,7 @@ const General: React.FC<{
                 </div>
               </div>
             </div>
-            <ContentBox3 content3={content3} /> 
+            <Quest3 content3={content3} /> 
           </div>
           {/* section 3 */}
 

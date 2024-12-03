@@ -1,19 +1,20 @@
+
 import Link from 'next/link'
-import Programs from '~/_data/content/programs.json'
+import Gifted from '~/_data/content/gifted.json'
 import General from '~/app/_components/General'
 
-export default function ProgramsData({ params }: { params: { programsId: string } }) {
-  const selection = params.programsId
+export default function GiftedData({ params }: { params: { giftedId: string } }) {
+  const selection = params.giftedId
 
-  const programs = Programs.find((prog) => prog.key === selection)
+  const gifted = Gifted.find((gif) => gif.key === selection)
 
-  const reviews = programs?.reviews || []
+  const reviews = gifted?.reviews || []
   const [review1, review2, review3] = [reviews[0] || null, reviews[1] || null, reviews[2] || null]
 
   return (
     <div>
       <General
-        editFormData={programs}
+        editFormData={gifted}
         review1={review1}
         review2={review2}
         review3={review3}
