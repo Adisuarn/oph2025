@@ -28,44 +28,21 @@ const Footer = async ({ theme }: { theme?: string }) => {
               <p className="-mt-1">OPEN HOUSE 2024</p>
             </div>
             <div className="flex space-x-3">
-              {/* <motion.a
-                href="https://www.facebook.com/TriamUdomOPH"
-                target="_blank"
-                rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-              >
+              <Link href="https://www.facebook.com/TriamUdomOPH" className="hover:scale-105" target="_blank">
                 <Facebook />
-              </motion.a> */}
-              {/* <motion.a
-                href="https://www.instagram.com/triamudom.oph/"
-                target="_blank"
-                rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-              >
+              </Link>
+              <Link href="https://www.instagram.com/triamudom.oph/" className="hover:scale-105" target="_blank">
                 <Instagram />
-              </motion.a> */}
-              {/* <motion.a
-                href="https://x.com/triamudomoph"
-                target="_blank"
-                rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-              >
+              </Link>
+              <Link href="https://x.com/triamudomoph" className="hover:scale-105" target="_blank">
                 <X />
-              </motion.a> */}
-              {/* <motion.a
-                href="https://www.youtube.com/c/TriamUdomOpenHouse"
-                target="_blank"
-                whileHover={{ scale: 1.05 }}
-              >
+              </Link>
+              <Link href="https://www.youtube.com/c/TriamUdomOpenHouse" className="hover:scale-105" target="_blank">
                 <Youtube />
-              </motion.a> */}
-              {/* <motion.a
-                href="https://www.tiktok.com/@triamudom.oph"
-                target="_blank"
-                whileHover={{ scale: 1.05 }}
-              >
+              </Link>
+              <Link href="https://www.tiktok.com/@triamudom.oph" className="hover:scale-105" target="_blank">
                 <Tiktok />
-              </motion.a> */}
+              </Link>
             </div>
             <SignButton session={session ? session : null} />
           </div>

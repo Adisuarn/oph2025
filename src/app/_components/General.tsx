@@ -119,7 +119,7 @@ const General: React.FC<{
     </div>
   );
 
-  const getTagContent3 = (tag: string) => {
+  const getQuest3 = (tag: string) => {
     switch (tag) {
       case 'clubs':
         return {
@@ -139,7 +139,7 @@ const General: React.FC<{
     }
   };
   
-  const TagContent3 = ({
+  const Quest3 = ({
     titles,
     textClasses,
   }: {
@@ -205,7 +205,7 @@ const General: React.FC<{
     }
   };
   
-  const Quest3 = ({ content3 }: { content3: string }) => (
+  const ContentBox3 = ({ content3 }: { content3: string }) => (
     <div
       dangerouslySetInnerHTML={{ __html: content3 }}
       className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
@@ -214,7 +214,7 @@ const General: React.FC<{
 
   const { titles: titles1, textClasses: textClasses1 } = getQues1(editFormData.tag);
   const { titles: titles2, textClasses: textClasses2 } = getQuest2(editFormData.tag);
-  const { titles: titles3, textClasses: textClasses3 } = getTagContent3(editFormData.tag);
+  const { titles: titles3, textClasses: textClasses3 } = getQuest3(editFormData.tag);
 
   const content1 = getContent1(editFormData.tag, editFormData);
   const content2 = getContent2(editFormData.tag, editFormData);
@@ -359,7 +359,7 @@ const General: React.FC<{
           {/* section 3 */}
           <div className="mb-14 mt-3 flex flex-col sm:mt-5 md:mb-20 md:mt-8">
             <div className="flex flex-col items-end justify-between sm:flex-row md:mb-8 md:items-center">
-            <TagContent3 titles={titles3} textClasses={textClasses3} />
+            <Quest3 titles={titles3} textClasses={textClasses3} />
               <div className="relative z-10 sm:w-[50vw] md:w-[60vw]">
                 <div className="absolute -left-10 -top-60 -z-10">
                   <Lamp className="w-32 sm:hidden" />
@@ -385,7 +385,7 @@ const General: React.FC<{
                 </div>
               </div>
             </div>
-            <Quest3 content3={content3} /> 
+            <ContentBox3 content3={content3} /> 
           </div>
           {/* section 3 */}
 
