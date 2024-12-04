@@ -2,7 +2,8 @@ import Link from 'next/link'
 import Organizations from '~/_data/content/organizations.json'
 import General from '~/app/_components/General'
 
-export default function OrganizationData({ params }: { params: { organizationsId: string } }) {
+export default async function OrganizationData(props: { params: Promise<{ organizationsId: string }> }) {
+  const params = await props.params;
   const selection = params.organizationsId
 
   const organization = Organizations.find((org) => org.key === selection)

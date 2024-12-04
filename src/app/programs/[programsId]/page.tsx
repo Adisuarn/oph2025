@@ -2,7 +2,8 @@ import Link from 'next/link'
 import Programs from '~/_data/content/programs.json'
 import General from '~/app/_components/General'
 
-export default function ProgramsData({ params }: { params: { programsId: string } }) {
+export default async function ProgramsData(props: { params: Promise<{ programsId: string }> }) {
+  const params = await props.params;
   const selection = params.programsId
 
   const programs = Programs.find((prog) => prog.key === selection)

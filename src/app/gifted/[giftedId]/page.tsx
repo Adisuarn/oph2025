@@ -3,7 +3,8 @@ import Link from 'next/link'
 import Gifted from '~/_data/content/gifted.json'
 import General from '~/app/_components/General'
 
-export default function GiftedData({ params }: { params: { giftedId: string } }) {
+export default async function GiftedData(props: { params: Promise<{ giftedId: string }> }) {
+  const params = await props.params;
   const selection = params.giftedId
 
   const gifted = Gifted.find((gif) => gif.key === selection)
