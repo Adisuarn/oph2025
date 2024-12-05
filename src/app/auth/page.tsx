@@ -3,6 +3,10 @@ import Link from 'next/link';
 import React from 'react';
 import { SignIn } from '~/app/_components/signIn';
 import { auth } from '~/server/auth';
+import Brick from '~/vectors/auth/Brick'
+import BrickSmall from '~/vectors/auth/BrickSmall'
+import NiceStuff from '~/vectors/auth/NiceStuff'
+import Window from '~/vectors/auth/Window'
 
 
 const Page = async () => {
@@ -12,32 +16,71 @@ const Page = async () => {
   // if (session.user.isRegister) redirect('e-ticket');
 
   return (
-    <section className="flex h-screen flex-col items-center justify-center bg-black text-white">
-      <div className="flex flex-col items-center justify-center">
-        <SignIn />
+    <main className="via-21% to-77% relative h-screen w-screen overflow-hidden bg-gradient-to-b from-[#6FB07C] via-[#4F8D78] to-[#072923] sm:z-0 sm:bg-gradient-to-br">
+      <div className="absolute right-0 top-10 z-30 w-[110vw] sm:-right-20 sm:top-20 sm:w-[70vw] md:-right-40">
+        <Window className="h-[50vh] w-full sm:h-40 md:h-[75vh]" />
       </div>
-      <div className="mt-6 text-xs font-medium text-white md:text-sm">
-        การลงทะเบียนถือว่ายอมรับ
-        <Link
-          href="/privacy-policy"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#FF9DE9] underline"
-        >
-          นโยบายความเป็นส่วนตัว
-        </Link>
-        <br />
-        และ
-        <Link
-          href="/tos"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#FF9DE9] underline"
-        >
-          ข้อตกลงการใช้งาน
-        </Link>
+      <div className="absolute bottom-0">
+        <Brick className="hidden sm:block sm:h-[30vh] sm:w-screen" />
       </div>
-    </section>
+      <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2">
+        <BrickSmall className="h-[55vh] sm:hidden" />
+      </div>
+      <div className="flex h-[90vh] flex-col items-center justify-end text-center sm:flex sm:h-full sm:items-start sm:justify-center md:pl-16 lg:pl-16 xl:pl-32">
+        <div className="relative z-20 items-center space-y-4 sm:flex sm:flex-col sm:justify-center">
+          <div className="-mt-24 flex flex-col">
+            <p className="bg-gradient-to-br from-[#ADDB64] from-10% to-[#ECF5C8] bg-clip-text text-6xl font-bold leading-normal text-transparent sm:leading-loose md:text-8xl md:leading-extra-loose">
+              Register
+            </p>
+            <div className="-mb-12 -mt-12 flex items-center justify-center space-x-3 md:-mt-32">
+              <NiceStuff className="h-28 w-32 sm:h-32 sm:w-36" />
+              <p className="from-24% bg-gradient-to-br from-greenishCream to-[#ADDB64] bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
+                ลงทะเบียน
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center justify-center">
+            <p className="from-24% bg-gradient-to-b from-greenishCream to-[#ADDB64] bg-clip-text text-4xl font-bold text-transparent">
+              กช.
+            </p>
+            <div className="mx-3 h-6 w-[2px] rounded-full bg-greenishCream sm:h-6 md:h-8"></div>
+            <div className="from-24% flex flex-col bg-gradient-to-bl from-greenishCream to-[#ADDB64] bg-clip-text text-xs font-bold text-transparent">
+              <p>งานกิจกรรมพัฒนาผู้เรียน</p>
+              <p>โรงเรียนเตรียมอุดมศึกษา</p>
+            </div>
+          </div>
+          <div className="relative z-50 flex justify-center">
+            <SignIn />
+          </div>
+        </div>
+      </div>
+    </main>
+    // <section className="flex h-screen flex-col items-center justify-center bg-black text-white">
+    //   <div className="flex flex-col items-center justify-center">
+    //     <SignIn />
+    //   </div>
+    //   <div className="mt-6 text-xs font-medium text-white md:text-sm">
+    //     การลงทะเบียนถือว่ายอมรับ
+    //     <Link
+    //       href="/privacy-policy"
+    //       target="_blank"
+    //       rel="noopener noreferrer"
+    //       className="text-[#FF9DE9] underline"
+    //     >
+    //       นโยบายความเป็นส่วนตัว
+    //     </Link>
+    //     <br />
+    //     และ
+    //     <Link
+    //       href="/tos"
+    //       target="_blank"
+    //       rel="noopener noreferrer"
+    //       className="text-[#FF9DE9] underline"
+    //     >
+    //       ข้อตกลงการใช้งาน
+    //     </Link>
+    //   </div>
+    // </section>
   );
 };
 

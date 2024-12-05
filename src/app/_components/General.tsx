@@ -124,7 +124,7 @@ const General: React.FC<{
       case 'clubs':
         return {
           titles: ['ผลงาน', 'ของชมรม'],
-          textClasses: ['sm:text-5xl md:text-6xl lg:text-7xl', 'sm:text-3xl md:text-4xl lg:text-5xl'],
+          textClasses: ['md:text-5xl lg:text-7xl', 'md:text-4xl lg:text-5xl'],
         };
       case 'organizations':
         return {
@@ -225,13 +225,13 @@ const General: React.FC<{
   }
   return (
     <section className="via-41% relative w-screen overflow-hidden bg-gradient-to-b from-[#ECF5C8] via-[#91CDAD] to-[#C8E5BD] font-Thai">
-      <div className="absolute -top-[340px] left-1/2 z-10 -translate-x-1/2 sm:-top-20">
-        <Uppercurve className="w-[100vw] md:w-[110vw] lg:hidden" />
+      <div className="absolute -top-[340px] left-1/2 z-10 -translate-x-1/2 md:-top-36">
+        <Uppercurve className="w-[100vw] md:w-[100vw] lg:hidden" />
       </div>
-      <div className="absolute -top-36 left-0 z-10 w-full overflow-hidden">
-        <BigUppercurve className="hidden w-full md:h-[50vw] lg:block" />
+      <div className="absolute lg:-top-16 xl:-top-28 left-0 z-10 w-full overflow-hidden">
+        <BigUppercurve className="hidden w-full lg:h-[50vw] lg:block" />
       </div>
-      <div className="absolute right-0 z-0 overflow-hidden lg:top-0 xl:top-[218px] 2xl:top-[500px]">
+      <div className="absolute right-0 z-0 overflow-hidden lg:top-[8rem] xl:top-[14rem] 2xl:top-[500px]">
         <ClubFallingLamp className="hidden lg:block lg:w-[270px] xl:w-80" />
       </div>
       <section className="relative z-40 mx-12 pt-48 sm:mx-28 sm:pt-72 md:mx-36 md:pt-[300px] lg:mx-48 xl:mx-60 2xl:pt-[550px]">
@@ -247,7 +247,7 @@ const General: React.FC<{
               ย้อนกลับ
             </Link>
           </div>
-          <p className="text-xs text-heroMiddle sm:text-lg md:text-2xl">preview page</p>
+          <div></div>
         </section>
 
         {/* Hero */}
@@ -301,10 +301,10 @@ const General: React.FC<{
             <div className="flex flex-col items-start justify-between sm:flex-row md:mb-8">
             <Ques1 titles={titles1} textClasses={textClasses1} />
               <div className="relative z-10 sm:w-[50vw] md:w-[60vw]">
-                <div className="absolute -left-12 -top-32 -z-10 sm:-left-[344px] md:-left-[490px] lg:top-0">
+                <div className="absolute -left-12 -top-32 -z-10 md:-left-[21rem] lg:top-0">
                   <Stainedglass className="w-16 sm:w-32 lg:hidden" />
                 </div>
-                <div className="absolute lg:-left-[550px] lg:-top-24 xl:-left-[600px] 2xl:-left-[870px]">
+                <div className="absolute lg:-left-[30rem] lg:-top-24 xl:-left-[600px] 2xl:-left-[870px]">
                   <BigStainedGlass className="hidden sm:w-32 md:w-48 lg:block xl:w-52 2xl:w-72" />
                 </div>
                 <Image
@@ -332,7 +332,7 @@ const General: React.FC<{
           <div className="mb-14 mt-3 flex flex-col sm:mt-5 md:mb-20 md:mt-8">
             <div className="flex flex-col-reverse items-center justify-between sm:flex-row md:mb-8">
               <div className="relative sm:w-[50vw] md:w-[60vw]">
-                <div className="absolute -right-12 -top-52 z-10 sm:-right-[264px] md:-right-[480px] md:-top-10 xl:-right-[570px] 2xl:-right-[870px]">
+                <div className="absolute -right-12 -top-52 z-10 md:-right-[24rem] md:-top-10 lg:-right-[31rem] xl:-right-[570px] 2xl:-right-[870px]">
                   <Flower className="w-16 sm:w-28 md:w-52 lg:w-72 2xl:w-96" />
                 </div>
                 <Image
@@ -364,7 +364,7 @@ const General: React.FC<{
                 <div className="absolute -left-10 -top-60 -z-10">
                   <Lamp className="w-32 sm:hidden" />
                 </div>
-                <div className="absolute -left-[344px] -top-48 lg:-left-[5.5rem] xl:-left-[600px] 2xl:-left-[870px]">
+                <div className="absolute -left-[344px] -top-48 lg:-left-[30rem] xl:-left-[600px] 2xl:-left-[870px]">
                   <LeftFrames className="hidden sm:block sm:w-32 md:w-44 lg:w-52 2xl:w-72" />
                 </div>
                 <Image
@@ -536,18 +536,18 @@ const General: React.FC<{
             )}
           </section>
 
-            {/* <div className='mt-40'>
+            <div className='mt-40'>
             <Randomizer />
-            </div> */}
+            </div>
 
         </section>
       </section>
 
       <div className="relative overflow-hidden pb-48 sm:pb-96 md:pb-[580px] xl:pb-[800px] 2xl:pb-[1000px]">
-        <div className="absolute -bottom-[150px] left-1/2 -translate-x-1/2 sm:-bottom-[60px] md:-bottom-[20px] lg:hidden">
+        <div className="absolute -bottom-[150px] left-1/2 -translate-x-1/2 md:-bottom-[3rem] lg:hidden">
           <Lowercurve className="w-[100vw]" />
         </div>
-        <div className="absolute -bottom-10 z-10 sm:bottom-5">
+        <div className="absolute -bottom-10 z-10 md:-bottom-5">
           <Footer className="w-[100vw] lg:hidden" />
         </div>
         <div className="absolute bottom-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden lg:-bottom-14 xl:-bottom-5 2xl:-bottom-10">

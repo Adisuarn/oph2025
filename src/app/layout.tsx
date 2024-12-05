@@ -52,9 +52,9 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       </head>
       <body className="font-Thai">
         <QueryProvider>
-          <Navbar />
+          {/* <Navbar /> */}
             {children}
-          <Footer />
+          {/* <Footer /> */}
           <ToastContainer />
         </QueryProvider>
       </body>

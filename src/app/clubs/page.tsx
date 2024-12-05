@@ -61,7 +61,7 @@ const SearchBar = () => {
         className="w-80 rounded-md border p-2 focus:outline-none focus:ring focus:ring-blue-300"
       />
       <motion.div
-        className="mt-5 grid grid-cols-4 gap-x-6 gap-y-4"
+        className="mt-5 grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-4"
         initial={{
           opacity: 0,
           y: -10,

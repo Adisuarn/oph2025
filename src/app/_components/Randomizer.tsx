@@ -1,46 +1,45 @@
 import React from "react";
 import Link from "next/link";
+import Clubs from '~/_data/content/clubs.json'
+import Image from 'next/image'
 
 const Randomizer = () => {
-  const mockData = [
-    { name: "Cristiano Ronaldo", desc: "The best football player in the world" },
-    { name: "Lionel Messi", desc: "The second best football player in the world" },
-    { name: "Neymar Jr.", desc: "The third best football player in the world" },
-    { name: "Kylian Mbappe", desc: "The fourth best football player in the world" },
-    { name: "Mohamed Salah", desc: "The fifth best football player in the world" },
-    { name: "Kevin De Bruyne", desc: "The sixth best football player in the world" },
-    { name: "Robert Lewandowski", desc: "The seventh best football player in the world" },
-    { name: "Sadio Mane", desc: "The eighth best football player in the world" },
-    { name: "Karim Benzema", desc: "The ninth best football player in the world" },
-    { name: "Harry Kane", desc: "The tenth best football player in the world" },
-  ];
+  const allData = Clubs;
 
-  // Helper function to shuffle the array
-  const shuffleArray = (array: typeof mockData) => {
-    return [...array].sort(() => Math.random() - 0.5);
-  };
+  function randomData(n: number) {
+    const result = [];
+    for (let i = 0; i < n; i++) {
+      const randomIndex = Math.floor(Math.random() * allData.length);
+      const [removed] = allData.splice(randomIndex, 1);
+        result.push(removed);
+    }
+    return result;
+  }
 
-  // Get the first 8 unique items from the shuffled array
-  const randomizedData = shuffleArray(mockData).slice(0, 8);
+  const randomFour = randomData(4);
 
-  type RandomBoxProps = {
+  interface RandomBoxProps {
     name: string;
-    desc: string;
-  };
+    logo: string;
+    tag: string;
+    id: string;
+  }
 
-  const RandomBox: React.FC<RandomBoxProps> = ({ name, desc }) => {
+  const RandomBox: React.FC<RandomBoxProps> = ({ name, logo, tag, id }) => {
     return (
-      <Link href='/' className="p-4 border rounded shadow">
+        <Link href={`/${tag}/${id}`} className="p-4 border rounded flex flex-col justify-center items-center">
+        <Image src={logo || "/hello"} alt={name} width={100} height={100} />
         <h2 className="text-xl font-bold">{name}</h2>
-        <p>{desc}</p>
       </Link>
     );
   };
 
+  console.log(randomFour);
+
   return (
     <div className="grid grid-rows-2 grid-cols-4 gap-4 p-4">
-      {randomizedData.map((player, index) => (
-        <RandomBox key={index} name={player.name} desc={player.desc} />
+      {randomFour.map((data, index) => (
+        <RandomBox key={index} name={data?.thainame ?? 'Unknown Name'} logo={data?.logo ?? 'No Logo'} tag={data?.tag ?? 'No Tag'} id={data?.clubKey ?? 'No ID'} />
       ))}
     </div>
   );

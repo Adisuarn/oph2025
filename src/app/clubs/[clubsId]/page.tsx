@@ -3,7 +3,7 @@ import General from '~/app/_components/General'
 
 export default async function clubData(props: { params: Promise<{ clubsId: string }> }) {
   const params = await props.params;
-  const selection = params.clubsId
+  const selection = decodeURIComponent(params.clubsId);
 
   const clubs = Clubs.find((club) => club.key === selection)
 

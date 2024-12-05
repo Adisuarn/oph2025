@@ -9,6 +9,7 @@ import { SignIn } from '~/app/_components/signIn'
 import { SignOut } from '~/app/_components/signOut'
 import { auth } from '~/server/auth'
 import { motion } from 'framer-motion'
+import TUOPH from '~/vectors/landing/TUOPH'
 
 const Page = async () => {
   const session = await auth()
@@ -31,18 +32,13 @@ const Page = async () => {
           `,
         }}
       />
-
-      <section>
-        {/* <Nav /> */}
-
-        <section className="flex h-screen flex-col items-center justify-center space-y-4 bg-zinc-400">
-          <p className="text-2xl">
-            <span className="font-bold">T</span>riam <span className="font-bold">U</span>dom
-          </p>
-          <p className="text-xl">OPEN HOUSE</p>
-          <p>10-11 January 2025</p>
+        <section className="flex h-screen flex-col items-center justify-center space-y-4 bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:space-y-8">
+          <TUOPH className="w-1/2" />
+          <div className='flex flex-col items-center justify-center space-y-4 md:space-y-8'>
+          <div className='bg-gradient-to-r from-[#E03C2E] to-[#F28041] py-2 px-6 font-semibold text-white rounded-full shadow-xl hover:scale-105 transition-all'>10-11 January 2025</div>
           <Countdown />
-          {session ? (
+          </div>
+          {/* {session ? (
             <div>
               It's great to have you <span className="font-bold">{session.user.username}</span>
             </div>
@@ -53,11 +49,12 @@ const Page = async () => {
             <Link href="/organizations/TUSC">kor nor</Link>
             <Link href="/programs/arts-german">Deutschland</Link>
             <Link href="/gifted/gifted-english">GE</Link>
-          </div>
+            <Link href="/clubs">clubs</Link>
+          </div> */}
           <div>
             <p>Stay Tuned</p>
             <Contacts />
-            {session && (
+            {/* {session && (
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div className="flex items-center justify-around"></div>
                 <Link href="/e-ticket" className="font-bold text-white">
@@ -65,10 +62,9 @@ const Page = async () => {
                 </Link>
                 <SignOut />
               </div>
-            )}
+            )} */}
           </div>
         </section>
-      </section>
     </>
   )
 }
