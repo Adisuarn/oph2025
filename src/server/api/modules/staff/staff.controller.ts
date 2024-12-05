@@ -10,7 +10,7 @@ export const confirmCode = async (staffUser: IUser, day: string, code: string): 
   const user = await prisma.user.findUnique({
     where: { code }
   })
-  if (!user?.code) return { status: 404, message: "User's code not found" }
+  if (!user?.code) return { status: 404, message: "Provided Code Incorrect" }
   if (user.event.length >= 2) return { status: 400, message: 'User already joined on both day'}
   
   // switch (day) {
