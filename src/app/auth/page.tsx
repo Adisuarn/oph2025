@@ -1,8 +1,8 @@
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-import React from 'react'
-import { SignIn } from '~/app/_components/signIn'
-import { auth } from '~/server/auth'
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
+import React from 'react';
+import { SignIn } from '~/app/_components/SignIn';
+import { auth } from '~/server/auth';
 import Brick from '~/vectors/auth/Brick'
 import BrickSmall from '~/vectors/auth/BrickSmall'
 import NiceStuff from '~/vectors/auth/NiceStuff'

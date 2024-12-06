@@ -5,6 +5,7 @@ import { QueryProvider } from "~/libs/elysia/react";
 import { seo } from "~/libs/seo";
 import { headers } from "next/headers";
 import { ToastContainer } from "react-toastify";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Navbar from "~/app/_components/Header/Navbar";
 import Footer from "~/app/_components/Footer/Footer";
 
@@ -61,6 +62,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
           {/* <Footer /> */}
           <ToastContainer />
         </QueryProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

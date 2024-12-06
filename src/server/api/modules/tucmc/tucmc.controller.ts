@@ -1,8 +1,5 @@
 import { prisma } from "~/server/db/prisma"
 import { IStaffData, IStaffInfo } from "./tucmc.dto"
-import { Workbook } from 'exceljs'
-import fs from 'fs'
-import path from 'path'
 
 export const addStaff = async (email: string, body: IStaffData): Promise<{ status: number, message: string }> => {
   try {
@@ -77,36 +74,10 @@ export const getStats = async () => {
       'ผู้ที่มางานรวมสองวัน': joinedUser
     }
 
-    const workbook = new Workbook()
-    const worksheet = workbook.addWorksheet('Stats')
-
-    worksheet.columns = [
-      { header: 'Metric', key: 'metric', width: 20 },
-      { header: 'Value', key: 'value', width: 10 }
-    ]
-
-    worksheet.addRows([
-      { metric: 'ผู้ใช้งานบนเว็บ', value: userOnSite },
-      { metric: 'ผู้ที่มางานวันแรก', value: userOnDay1 },
-      { metric: 'ผู้ที่มางานวันที่สอง', value: userOnDay2 },
-      { metric: 'ผู้ที่มางานรวมสองวัน', value: joinedUser }
-    ])
-
-    const outputDir = path.join(process.cwd(), '_stats')
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true })
-    }
-
-    const filename = `stats-${new Date().toISOString().split('T')[0]}.xlsx`
-    const filepath = path.join(outputDir, filename)
-
-    await workbook.xlsx.writeFile(filepath)
-
     return {
       status: 200,
-      message: 'Excel file saved successfully',
+      message: 'Get Stats Successfully',
       data,
-      filepath,
     }
 
   } catch (error) {

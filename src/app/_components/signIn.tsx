@@ -1,7 +1,6 @@
 import { signIn } from "~/server/auth"
 import Google from '~/vectors/auth/Google'
 
-
 export function SignIn(){
   return (
     <form
