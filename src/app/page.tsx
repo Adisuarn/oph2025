@@ -8,8 +8,10 @@ import Nav from '~/app/_components/Header/Navbar'
 import { SignIn } from '~/app/_components/signIn'
 import { SignOut } from '~/app/_components/signOut'
 import { auth } from '~/server/auth'
-import { motion } from 'framer-motion'
 import TUOPH from '~/vectors/landing/TUOPH'
+import { motion } from 'framer-motion'
+import Landing from '~/vectors/landing/Landing'
+import MLanding1 from '~/vectors/landing/MLanding1'
 
 const Page = async () => {
   const session = await auth()
@@ -32,13 +34,24 @@ const Page = async () => {
           `,
         }}
       />
-        <section className="flex h-screen flex-col items-center justify-center space-y-4 bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:space-y-8">
-          <TUOPH className="w-1/2" />
-          <div className='flex flex-col items-center justify-center space-y-4 md:space-y-8'>
-          <div className='bg-gradient-to-r from-[#E03C2E] to-[#F28041] py-2 px-6 font-semibold text-white rounded-full shadow-xl hover:scale-105 transition-all'>10-11 January 2025</div>
-          <Countdown />
+      <section className="relative flex h-screen flex-col items-center justify-between md:justify-around lg:justify-end space-y-8 bg-gradient-radial from-[#ECF5C8] to-[#6AB692] overflow-hidden">
+        <div className='absolute -translate-x-1/2 left-1/2 lg:hidden -bottom-4'>
+          <Landing className='w-[100vw] md:h-[100vh]'/>
+        </div>
+        <div className='hidden lg:block absolute left-1/2 -translate-x-1/2 lg:-top-4 xl:-top-14 overflow-hidden'>
+          <MLanding1 className='lg:w-[105vw] xl:w-[110vw] lg:h-[110vh]'/>
+        </div>
+        <div className='-top-4 md:-top-4 lg:top-[10%] left-1/2 -translate-x-1/2 absolute z-40'>
+          <TUOPH className='w-[95vw] lg:w-[80vw]' />
+        </div>
+        <div className='md:hidden'></div>
+        <div className="flex flex-col items-center justify-center space-y-4 md:space-y-8 relative xl:space-y-10 2xl:space-y-14 xl:mb-8 -top-8 md:top-8 lg:-top-4">
+          <div className="md:text-xl xl:text-2xl rounded-full bg-gradient-to-r from-[#E03C2E] to-[#F28041] px-8 py-2 xl:py-4 font-semibold text-white shadow-2xl transition-all hover:scale-105">
+            10-11 January 2025
           </div>
-          {/* {session ? (
+          <Countdown />
+        </div>
+        {/* {session ? (
             <div>
               It's great to have you <span className="font-bold">{session.user.username}</span>
             </div>
@@ -51,10 +64,9 @@ const Page = async () => {
             <Link href="/gifted/gifted-english">GE</Link>
             <Link href="/clubs">clubs</Link>
           </div> */}
-          <div>
-            <p>Stay Tuned</p>
-            <Contacts />
-            {/* {session && (
+        <div>
+          <Contacts />
+          {/* {session && (
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div className="flex items-center justify-around"></div>
                 <Link href="/e-ticket" className="font-bold text-white">
@@ -63,8 +75,8 @@ const Page = async () => {
                 <SignOut />
               </div>
             )} */}
-          </div>
-        </section>
+        </div>
+      </section>
     </>
   )
 }

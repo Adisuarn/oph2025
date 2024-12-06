@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 const Countdown = () => {
   const ophDate = new Date("2025-01-10T00:00:00Z").getTime();
   const [timeLeft, setTimeLeft] = useState({ days: '0', hours: '0', mins: '0', secs: '0' });
-  const [quote, setQuote] = useState('');
 
   function calculateTimeLeft() {
     const now = new Date().getTime();
@@ -28,13 +27,6 @@ const Countdown = () => {
       secs: String(secs).padStart(2, '0'),
     };
   }
-  
-
-  useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const randomQuote = quotes[randomIndex];
-    setQuote(randomQuote!);
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -45,30 +37,23 @@ const Countdown = () => {
   }, []);  
 
   const CountdownBox = ({ time, unit }: { time: string; unit: string }) => (
-    <div className='flex flex-col items-center justify-center space-y-2'>
-    <motion.div className="bg-white size-20 rounded-xl flex flex-col justify-center items-center hover:scale-110 transition-all shadow-xl">
-      <div className='text-[#C72612] font-bold text-3xl md:text-4xl'>{time}</div>
+    <div className='flex flex-col items-center justify-center space-y-1 lg:space-y-2'>
+    <motion.div className="bg-white size-14 lg:size-20 xl:size-24 rounded-xl flex flex-col justify-center items-center hover:scale-110 transition-all shadow-xl">
+      <div className='text-[#C72612] font-bold text-2xl lg:text-4xl xl:text-5xl'>{time}</div>
     </motion.div>
-      <div className='text-white opacity-70'>{unit}</div>
+      <div className='text-white opacity-70 xl:text-sm'>{unit}</div>
       </div>
   );
 
-  const quotes = [
-    "The only way to do great work is to love what you do.",
-    "The best time to plant a tree was 20 years ago. The second best time is now.",
-    "Your limitation—it’s only your imagination",
-  ];
-
   return (
     <section>
-      <div className="flex flex-col justify-center items-center space-y-4">
-        <div className="flex space-x-4">
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex space-x-2 lg:space-x-4 xl:space-x-8">
           <CountdownBox time={timeLeft.days} unit="Days" />
           <CountdownBox time={timeLeft.hours} unit="Hours" />
           <CountdownBox time={timeLeft.mins} unit="Minutes" />
           <CountdownBox time={timeLeft.secs} unit="Seconds" />
         </div>
-        <p>{quote}</p>
       </div>
     </section>
   );

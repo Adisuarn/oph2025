@@ -1,18 +1,17 @@
-import { redirect } from 'next/navigation';
-import Link from 'next/link';
-import React from 'react';
-import { SignIn } from '~/app/_components/signIn';
-import { auth } from '~/server/auth';
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import React from 'react'
+import { SignIn } from '~/app/_components/signIn'
+import { auth } from '~/server/auth'
 import Brick from '~/vectors/auth/Brick'
 import BrickSmall from '~/vectors/auth/BrickSmall'
 import NiceStuff from '~/vectors/auth/NiceStuff'
 import Window from '~/vectors/auth/Window'
 
-
 const Page = async () => {
-  const session = await auth();
+  const session = await auth()
 
-  if (session) redirect('/register?email=' + session?.user.email);
+  if (session) redirect('/register?email=' + session?.user.email)
   // if (session.user.isRegister) redirect('e-ticket');
 
   return (
@@ -28,7 +27,7 @@ const Page = async () => {
       </div>
       <div className="flex h-[90vh] flex-col items-center justify-end text-center sm:flex sm:h-full sm:items-start sm:justify-center md:pl-16 lg:pl-16 xl:pl-32">
         <div className="relative z-20 items-center space-y-4 sm:flex sm:flex-col sm:justify-center">
-          <div className="-mt-24 flex flex-col">
+          <div className="-mt-28 flex flex-col">
             <p className="bg-gradient-to-br from-[#ADDB64] from-10% to-[#ECF5C8] bg-clip-text text-6xl font-bold leading-normal text-transparent sm:leading-loose md:text-8xl md:leading-extra-loose">
               Register
             </p>
@@ -49,39 +48,35 @@ const Page = async () => {
               <p>โรงเรียนเตรียมอุดมศึกษา</p>
             </div>
           </div>
-          <div className="relative z-50 flex justify-center">
+          <div className="relative z-50 flex flex-col space-y-4 justify-center items-center">
             <SignIn />
+            <div className="text-xs font-medium text-white md:text-sm">
+              การลงทะเบียนถือว่ายอมรับ
+              <Link
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="from-24% bg-gradient-to-b from-greenishCream to-[#ADDB64] bg-clip-text text-transparent underline"
+              >
+                นโยบายความเป็นส่วนตัว
+              </Link>
+              <br />
+              และ
+              <Link
+                href="/tos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="from-24% bg-gradient-to-b from-greenishCream to-[#ADDB64] bg-clip-text text-transparent underline"
+              >
+                ข้อตกลงการใช้งาน
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </main>
-    // <section className="flex h-screen flex-col items-center justify-center bg-black text-white">
-    //   <div className="flex flex-col items-center justify-center">
-    //     <SignIn />
-    //   </div>
-    //   <div className="mt-6 text-xs font-medium text-white md:text-sm">
-    //     การลงทะเบียนถือว่ายอมรับ
-    //     <Link
-    //       href="/privacy-policy"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //       className="text-[#FF9DE9] underline"
-    //     >
-    //       นโยบายความเป็นส่วนตัว
-    //     </Link>
-    //     <br />
-    //     และ
-    //     <Link
-    //       href="/tos"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //       className="text-[#FF9DE9] underline"
-    //     >
-    //       ข้อตกลงการใช้งาน
-    //     </Link>
-    //   </div>
-    // </section>
-  );
-};
+    
+  )
+}
 
-export default Page;
+export default Page
