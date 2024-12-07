@@ -4,7 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import Clubs from '~/_data/content/clubs.json'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
+import * as motion from "motion/react-client"
 
 const SearchBar = () => {
   const [query, setQuery] = useState('')

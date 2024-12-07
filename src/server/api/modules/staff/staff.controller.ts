@@ -2,6 +2,14 @@ import { prisma } from "~/server/db/prisma"
 import { getDate } from "~/server/utils"
 import { User as IUser } from "next-auth"
 
+export const checkCode = async (code: string): Promise<{ status: number, message: string }> => {
+  const user = await prisma.user.findUnique({
+    where: { code }
+  })
+  if (!user?.code) return { status: 404, message: 'Provided Code Incorrect' }
+  return { status: 200, message: 'Code Found' }
+}
+
 export const confirmCode = async (staffUser: IUser, day: string, code: string): Promise<{ status: number, message: string }> => {
   const staffData = await prisma.user.findUnique({
     where: { email: staffUser.email! }

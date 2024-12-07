@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import 'react-toastify/dist/ReactToastify.css'
 
 import Randomizer from '~/app/_components/Randomizer'
 

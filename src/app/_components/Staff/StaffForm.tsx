@@ -1,79 +1,147 @@
-'use client'
-import React from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { api } from '~/libs/elysia/react'
-import { toast } from 'react-toastify'
-import { Button } from '~/shadcn/button'
-import { Loader2 } from 'lucide-react'
-import * as Yup from 'yup'
+'use client';
+import React from 'react';
+import { useCallback } from 'react';
+import { Button } from '~/shadcn/button';
+import { Formik, Form, Field, FormikHelpers } from 'formik';
+import { api } from '~/libs/elysia/react';
+import { toast } from 'react-toastify';
+import { Loader2 } from 'lucide-react';
+import { AiFillCloseCircle } from "react-icons/ai";
+import Link from 'next/link';
+import * as Yup from 'yup';
+import classNames from 'classnames';
 
-const StaffForm = ({ code }: any) => {
+const StaffForm = ({ code }: { code?: string }) => {
 
-  // const today = new Date()
-  // const day = today.toISOString().split('T')[0] === '2025-01-10' ? "1"
-  //   : today.toISOString().split('T')[0] === '2025-01-11' ? "2"
-  //     : 'Invalid'
+  const initialValues = { code: code || '' };
 
-  const initialValues = {
-    code: code || ''
-  }
+  const debounce = (func: Function, delay: number) => {
+    let timeout: NodeJS.Timeout;
+    return (...args: any[]) => {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), delay);
+    };
+  };
 
-  const onSubmit = async (values: { code: string }, { setSubmitting }: any) => {
-    const id = toast.loading('Code Submitting...')
-    //const { error } = await api.staff({ day: day })({ code: values.code }).post()
-    const { error } = await api.staff({ day: '1' })({ code: values.code }).post()
-    if (error) {
-      toast.update(id, {
-        render: `${error.value}`,
-        type: 'error',
-        isLoading: false,
-        autoClose: 2000
-      })
-      setSubmitting(false)
-      return
-    }
-    toast.update(id, {
-      render: 'Code Submitted',
-      type: 'success',
-      isLoading: false,
-      autoClose: 2000
-    })
-    setSubmitting(false)
-  }
+  const validateCode = useCallback(
+    debounce(async (value: string, callback: (isValid: boolean) => void) => {
+      if (!value || value.length !== 5) return callback(false);
+      try {
+        const { error } = await api.staff.checkcode({ code: value }).get();
+        callback(!error);
+      } catch {
+        callback(false);
+      }
+    }, 500),
+    []
+  );
 
   const validationSchema = Yup.object({
-    code: Yup.string().required('Required')
-  })
+    code: Yup.string()
+      .required('กรุณากรอกรหัสเข้างาน')
+      .length(5, 'กรุณากรอกให้ครบ 5 ตัวอักษร')
+      .test(
+        'check-code',
+        'รหัสนี้ไม่มีอยู่ในระบบ',
+        (value) =>
+          new Promise((resolve) => {
+            validateCode(value || '', resolve);
+          })
+      ),
+  });
+
+  const handleSubmit = async (values: { code: string }, { setSubmitting }: FormikHelpers<{ code: string }>) => {
+    const toastId = toast.loading('Code Submitting...');
+    try {
+      const { error } = await api.staff.confirmcode({ day: '1' })({ code: values.code }).post();
+      toast.update(toastId, {
+        render: error ? error.value : 'ยืนยันรหัสเข้างานเรียบร้อย',
+        type: error ? 'error' : 'success',
+        isLoading: false,
+        autoClose: 2000,
+      });
+    } catch {
+      toast.update(toastId, {
+        render: 'เกิดข้อผิดพลาดที่เซิฟเวอร์',
+        type: 'error',
+        isLoading: false,
+        autoClose: 2000,
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div>
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
+        validateOnMount
       >
-        {({ isSubmitting, values }) => (
-          <Form className="flex flex-col h-full justify-center text-center">
-            <label>กรุณากรอกรหัสเข้างาน</label>
-            <Field name="code" type="text" className="border " placeholder="Please provide code" />
-            <ErrorMessage name="code" className="text-red-400" component="div" />
-            <Button
-              type="submit"
-              disabled={!values.code}
-              className={`${!values.code ? 'cursor-not-allowed' : ''} mt-5`}
-            >
-              {isSubmitting
-                ? <>
-                  <Loader2 className="animate-spin" />
-                  Submitting...
+        {({ isSubmitting, errors, values, isValid, isValidating }) => {
+
+          const isButtonDisabled = !values.code || isSubmitting || !isValid || isValidating;
+
+          return (
+            <Form className="flex flex-col h-full justify-center text-center">
+              <Field
+                name="code"
+                type="text"
+                maxLength={5}
+                autoComplete="off"
+                spellCheck="false"
+                placeholder="รหัสเข้างาน"
+                className="border rounded-md mt-3 py-2 px-1 placeholder:text-center"
+              />
+
+              {errors.code && <div className="text-red-400 text-sm mt-1">{errors.code}</div>}
+
+              <Button
+                type="submit"
+                variant="outline"
+                disabled={isButtonDisabled}
+                className={classNames(
+                  'mt-5 border',
+                  isButtonDisabled && 'cursor-not-allowed opacity-50',
+                  isSubmitting ? ' border-yellow-400 text-yellow-600' : '',
+                  isValidating 
+                    ? 'border-yellow-400 text-yellow-600'
+                    : errors.code ? ' border-red-400 text-red-500'
+                      : 'hover:bg-green-200 border-green-400 hover:text-green-800 transition-colors duration-200'
+                )}
+              >
+                {isSubmitting &&
+                  <>
+                    <Loader2 className="animate-spin mr-2" />
+                    Submitting...
                   </>
-                : 'Submit'}
-            </Button>
-          </Form>
-        )}
+                }
+                {isValidating &&
+                  <>
+                    <Loader2 className="animate-spin mr-2" />
+                    Validating...
+                  </>
+                }
+                {!isSubmitting && !errors.code && !isValidating && 'Submit'}
+                {!isSubmitting && errors.code && !isValidating && <AiFillCloseCircle />}
+              </Button>
+
+              <Button
+                asChild
+                variant="link"
+                disabled={isSubmitting}
+                className={classNames('mt-5', isSubmitting && 'cursor-not-allowed')}
+              >
+                <Link href="/">กลับหน้าหลัก</Link>
+              </Button>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
-  )
-}
+  );
+};
 
-export default StaffForm
+export default StaffForm;
