@@ -5,13 +5,11 @@ import Script from 'next/script'
 import Contacts from '~/app/_components/Contacts'
 import Countdown from '~/app/_components/Countdown'
 import Nav from '~/app/_components/Header/Navbar'
-import { SignIn } from '~/app/_components/SignIn'
-import { SignOut } from '~/app/_components/SignOut'
 import { auth } from '~/server/auth'
-import TUOPH from '~/vectors/landing/TUOPH'
-import { motion } from 'framer-motion'
 import Landing from '~/vectors/landing/Landing'
 import MLanding1 from '~/vectors/landing/MLanding1'
+import TUOPH from '~/vectors/landing/TUOPH'
+import { motion } from 'framer-motion'
 
 const Page = async () => {
   const session = await auth()
@@ -34,13 +32,28 @@ const Page = async () => {
           `,
         }}
       />
-      <section className="flex h-screen flex-col items-center justify-center space-y-4 bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:space-y-8">
-        <TUOPH className="w-1/2" />
-        <div className='flex flex-col items-center justify-center space-y-4 md:space-y-8'>
-          <div className='bg-gradient-to-r from-[#E03C2E] to-[#F28041] py-2 px-6 font-semibold text-white rounded-full shadow-xl hover:scale-105 transition-all'>10-11 January 2025</div>
+      <section className="relative flex h-screen flex-col items-center justify-between space-y-8 overflow-hidden bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:justify-around lg:justify-end">
+        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 lg:hidden">
+          <Landing className="w-[100vw] md:h-[100vh]" />
+        </div>
+        <div className="absolute left-1/2 hidden -translate-x-1/2 overflow-hidden lg:-top-4 lg:block xl:-top-14">
+          <MLanding1 className="lg:h-[110vh] lg:w-[105vw] xl:w-[screen]" />
+        </div>
+        <div className="absolute -top-4 left-1/2 z-40 -translate-x-1/2 md:-top-4 lg:top-[10%]">
+          <TUOPH className="w-[95vw] lg:w-[80vw]" />
+        </div>
+        <div className="md:hidden"></div>
+        <div className="relative -top-8 flex flex-col items-center justify-center space-y-4 md:top-8 md:space-y-8 lg:-top-4 xl:mb-8 xl:space-y-10 2xl:space-y-14">
+          <div className="rounded-full bg-gradient-to-r from-[#E03C2E] to-[#F28041] px-8 py-2 font-semibold text-white shadow-2xl transition-all hover:scale-105 md:text-xl xl:py-4 xl:text-2xl">
+            10-11 January 2025
+          </div>
           <Countdown />
         </div>
-        {/* {session ? (
+        <div>
+          <Contacts />
+        </div>
+      </section>
+      {/* {session ? (
             <div>
               It's great to have you <span className="font-bold">{session.user.username}</span>
             </div>
@@ -53,10 +66,7 @@ const Page = async () => {
             <Link href="/gifted/gifted-english">GE</Link>
             <Link href="/clubs">clubs</Link>
           </div> */}
-        <div>
-          <p>Stay Tuned</p>
-          <Contacts />
-          {/* {session && (
+      {/* {session && (
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div className="flex items-center justify-around"></div>
                 <Link href="/e-ticket" className="font-bold text-white">
@@ -65,8 +75,6 @@ const Page = async () => {
                 <SignOut />
               </div>
             )} */}
-        </div>
-      </section>
     </>
   )
 }
