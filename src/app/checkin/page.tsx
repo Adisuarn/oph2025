@@ -6,11 +6,14 @@ import StaffForm from '~/components/Staff/StaffForm';
 
 export default async function CheckIn({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }>}) {
   const session = await auth()
-  //if (!session?.user.isStaff) redirect('/');
+  
+  if (!session) redirect('/auth?callbackUrl=/checkin');
+  if (!session?.user.isRegister) redirect('/register?email=' + session?.user.email);
+  if (!session?.user.isStaff) redirect('/');
+
   const code = (await searchParams).code
   return (
     <main className="flex flex-col h-screen items-center justify-center">
-
       <section className="relative border rounded-xl w-[70%] h-[50%] flex flex-col items-center py-7 md:h-[35%] lg:w-[40%] lg:h-[40%]">
         <div className="absolute bottom-3 right-3 md:top-3 md:right-3">
           <ModeToggle />

@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     if (!code) throw new Error('Bad Request')
 
     const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(
-      getBaseUrl() + '/checkin/' + code
+      getBaseUrl() + '/checkin?code=' + code
     )}&size=200&centerImageUrl=${encodeURIComponent('https://i.imgur.com/F3SLsQz.png')}`
 
     return new ImageResponse(

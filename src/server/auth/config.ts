@@ -1,7 +1,6 @@
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
+import { NextResponse }  from "next/server";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import { prisma } from '~/server/db/prisma';
 
 /**
  * Module augmentation for next-auth types. Allows us to add custom properties to the session
@@ -33,8 +32,10 @@ declare module "next-auth" {
 }
 
 export const authConfig = {
-  adapter: PrismaAdapter(prisma),
   providers: [GoogleProvider],
+  pages: {
+    signIn: "/auth",
+  },
   callbacks: {
     session: async ({ session, user }) => (
       {
@@ -43,6 +44,7 @@ export const authConfig = {
         ...session.user,
         id: user.id,
       }
-    }),
+      }
+    )
   },
 } satisfies NextAuthConfig;

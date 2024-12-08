@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { useCallback } from 'react';
 import { Button } from '~/shadcn/button';
@@ -28,6 +29,7 @@ const StaffForm = ({ code }: { code?: string }) => {
       if (!value || value.length !== 5) return callback(false);
       try {
         const { error } = await api.staff.checkcode({ code: value }).get();
+        console.log(error);
         callback(!error);
       } catch {
         callback(false);
@@ -93,7 +95,7 @@ const StaffForm = ({ code }: { code?: string }) => {
                 autoComplete="off"
                 spellCheck="false"
                 placeholder="รหัสเข้างาน"
-                className="border rounded-md mt-3 py-2 px-1 placeholder:text-center"
+                className="border rounded-md mt-3 py-2 px-1 placeholder:text-center focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
 
               {errors.code && <div className="text-red-400 text-sm mt-1">{errors.code}</div>}
@@ -115,13 +117,13 @@ const StaffForm = ({ code }: { code?: string }) => {
                 {isSubmitting &&
                   <>
                     <Loader2 className="animate-spin mr-2" />
-                    Submitting...
+                    กำลังยืนยันรหัส...
                   </>
                 }
                 {isValidating &&
                   <>
                     <Loader2 className="animate-spin mr-2" />
-                    Validating...
+                    กำลังตรวจสอบ...
                   </>
                 }
                 {!isSubmitting && !errors.code && !isValidating && 'Submit'}

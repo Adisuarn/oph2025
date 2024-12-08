@@ -37,7 +37,7 @@ const page = async () => {
           <DownloadTicket code={session?.user.code!} />
         </div>
         <Link href="/">Home</Link>
-        <Link href={`checkin/${session?.user.code}`} className='ml-4'>STAFF Check in</Link>
+        <Link href={`checkin?code=${session?.user.code}`} className='ml-4'>STAFF Check in</Link>
       </div>
     </section>
   )

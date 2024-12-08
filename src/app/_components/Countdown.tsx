@@ -1,18 +1,17 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import * as motion from "motion/react-client"
+import * as motion from "motion/react-client";
 
 const Countdown = () => {
-  const ophDate = new Date('2025-01-10T00:00:00Z').getTime()
-  const [timeLeft, setTimeLeft] = useState({ days: '0', hours: '0', mins: '0', secs: '0' })
+  const ophTime = new Date('2025-01-10T00:00:00Z').getTime();
 
   function calculateTimeLeft() {
     const now = new Date().getTime();
-    const difference = ophDate - now;
+    const difference = ophTime - now;
 
     if (difference <= 0) {
-      return { days: '00', hours: '00', mins: '00', secs: '00' }
+      return { days: '00', hours: '00', mins: '00', secs: '00' };
     }
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -25,8 +24,10 @@ const Countdown = () => {
       hours: String(hours).padStart(2, '0'),
       mins: String(mins).padStart(2, '0'),
       secs: String(secs).padStart(2, '0'),
-    }
+    };
   }
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft); // Initialize with calculated time
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -56,7 +57,7 @@ const Countdown = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Countdown
+export default Countdown;

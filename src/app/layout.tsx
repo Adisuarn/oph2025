@@ -3,19 +3,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { QueryProvider } from "~/libs/elysia/react";
 import { seo } from "~/libs/seo";
-import { headers } from "next/headers";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from '../components/theme-provider'
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import Navbar from "~/app/_components/Header/Navbar";
 import Footer from "~/app/_components/Footer/Footer";
 
 export const metadata = seo({});
 
 const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
-
-  const headersList = await headers()
-  const header_url = headersList.get('x-url')
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -70,6 +67,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
           </ThemeProvider>
         </QueryProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

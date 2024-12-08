@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { Redirect } from 'next'
 import Link from 'next/link'
 import Script from 'next/script'
 import Contacts from '~/app/_components/Contacts'

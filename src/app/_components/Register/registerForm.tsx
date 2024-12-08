@@ -94,6 +94,24 @@ export default function RegisterForm() {
       >
         {({ isSubmitting }) => (
           <Form className="border min-w-[85%] md:min-w-[60%] lg:min-w-[50%]">
+
+            <div className="mt-3">
+              <label>Prefix</label>
+              <div>
+                <label>
+                  <Field type="radio" name="prefix" value="male" />
+                  Male
+                </label>
+              </div>
+              <div>
+                <label>
+                  <Field type="radio" name="prefix" value="female" />
+                  Female
+                </label>
+              </div>
+              <ErrorMessage name="prefix" className="text-red-400" component="div" />
+            </div>
+
             <div className="mt-3">
               <label>Username</label>
               <div>

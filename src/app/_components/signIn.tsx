@@ -1,12 +1,14 @@
 import { signIn } from "~/server/auth"
 import Google from '~/vectors/auth/Google'
 
-export function SignIn(){
+export async function SignIn({ callbackUrl }: any) {
   return (
     <form
       action={async() => {
         'use server'
-        await signIn("google")
+        await signIn("google", {
+          redirectTo: callbackUrl ? decodeURIComponent(callbackUrl) : "/auth",
+        })
       }}
     >
     <button className="to-72% relatvie z-20 flex items-center justify-center space-x-3 rounded-full bg-gradient-to-b from-white to-white px-3 py-3 shadow-xl hover:opacity-75 sm:px-5 md:px-14 md:py-5 md:text-xl"

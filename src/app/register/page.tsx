@@ -2,7 +2,7 @@ import React from 'react'
 import { SessionProvider } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import { auth } from '~/server/auth'
-import RegisterForm from '~/components/Register/RegisterForm'
+import RegisterForm from '~/components/Register/registerForm'
 
 const Register: React.FC = async () => {
   const session = await auth()

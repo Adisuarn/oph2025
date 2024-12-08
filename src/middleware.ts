@@ -1,16 +1,18 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
- 
-export function middleware(req: NextRequest) {
 
-  //TODO Make user only be able to access homepage
+export async function middleware(req: NextRequest) {
+
+  const currentPath = req.nextUrl.pathname
 
   {/* Implement Path Url to Header */}
   const requestHeaders = new Headers(req.headers)
-  requestHeaders.set('x-url', req.url)
+  requestHeaders.set('x-current-path', currentPath)
 
-  {/* Implement Caching User Route */}
-  const currentPath = req.nextUrl.pathname
+  { /* Redirect User To HomePage*/}
+  // if (currentPath !== '/') {
+  //   return NextResponse.redirect(new URL('/', req.url))
+  // }
 
   return NextResponse.next({
     request: {

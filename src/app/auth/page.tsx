@@ -1,18 +1,19 @@
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import React from 'react';
-import { SignIn } from '~/app/_components/signIn';
+import { SignIn } from '~/app/_components/SignIn';
 import { auth } from '~/server/auth';
 import Brick from '~/vectors/auth/Brick'
 import BrickSmall from '~/vectors/auth/BrickSmall'
 import NiceStuff from '~/vectors/auth/NiceStuff'
 import Window from '~/vectors/auth/Window'
 
-const Page = async () => {
+const Page = async({ searchParams }: { searchParams: Promise<{ [key: string ]: string | undefined }>}) => {
   const session = await auth()
+  if (session && session.user.isRegister) redirect('/e-ticket');
+  if (session && !session.user.isRegister) redirect('/register?email=' + session?.user.email)
 
-  if (session) redirect('/register?email=' + session?.user.email)
-  // if (session.user.isRegister) redirect('e-ticket');
+  const callbackUrl = (await searchParams).callbackUrl
 
   return (
     <main className="via-21% to-77% relative h-screen w-screen overflow-hidden bg-gradient-to-b from-[#6FB07C] via-[#4F8D78] to-[#072923] sm:z-0 sm:bg-gradient-to-br">
@@ -49,7 +50,7 @@ const Page = async () => {
             </div>
           </div>
           <div className="relative z-50 flex flex-col space-y-4 justify-center items-center">
-            <SignIn />
+            <SignIn callbackUrl={callbackUrl} />
             <div className="text-xs font-medium text-white md:text-sm">
               การลงทะเบียนถือว่ายอมรับ
               <Link
