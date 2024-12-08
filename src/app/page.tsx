@@ -38,12 +38,12 @@ const Page = async () => {
         <div className="absolute left-1/2 hidden -translate-x-1/2 overflow-hidden lg:-top-4 lg:block xl:-top-14">
           <MLanding1 className="lg:h-[110vh] lg:w-[105vw] xl:w-[120vw]" />
         </div>
-        <div className="absolute top-4 sm:-top-4 left-1/2 z-40 -translate-x-1/2 md:-top-4 lg:top-[10%]">
+        <div className="absolute -top-4 left-1/2 z-40 -translate-x-1/2 md:-top-4 lg:top-[10%]">
           <TUOPH className="w-[95vw] lg:w-[80vw]" />
         </div>
         <div className="md:hidden"></div>
-        <div className="relative -top-8 flex flex-col items-center justify-center space-y-4 md:top-8 md:space-y-8 lg:-top-4 xl:mb-8 xl:space-y-10 2xl:space-y-14">
-          <div className="rounded-full bg-gradient-to-r from-[#E03C2E] to-[#F28041] px-8 py-2 font-semibold text-white shadow-2xl transition-all hover:scale-105 md:text-xl xl:py-4 xl:text-2xl">
+        <div className="relative -top-2 flex flex-col items-center justify-center space-y-4 md:top-8 md:space-y-8 lg:-top-4 xl:mb-8 xl:space-y-10 2xl:space-y-14">
+          <div className="rounded-full bg-gradient-to-r from-[#E03C2E] to-[#F28041] px-10 py-3 font-semibold text-white shadow-2xl transition-all hover:scale-105 md:text-xl xl:py-4 xl:text-2xl">
             10-11 January 2025
           </div>
           <Countdown />

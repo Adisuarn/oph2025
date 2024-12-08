@@ -1,12 +1,12 @@
 'use client'
+
+import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
-import * as Yup from 'yup'
-import { useSearchParams } from 'next/navigation';
-import { useSession } from "next-auth/react"
-import { useRouter } from 'next/navigation'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { api } from '~/libs/elysia/react'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
-import { api } from '~/libs/elysia/react';
+import * as Yup from 'yup'
 
 interface RegisterForm {
   prefix: string
@@ -21,21 +21,29 @@ interface RegisterForm {
 }
 
 export default function RegisterForm() {
-
   const router = useRouter()
 
-  { /* Authentication */ }
+  {
+    /* Authentication */
+  }
   const { data: session, status } = useSession()
   const searchParams = useSearchParams()
   const emailQuery = searchParams.get('email')
 
-  if (status === 'loading') return <div>Loading...</div>
+  if (status === 'loading')
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="loader"></div>
+      </div>
+    )
   if (status === 'unauthenticated') return <div>Unauthenticated</div>
   if (emailQuery !== session?.user?.email) {
     return <div>Bad Request</div>
   }
 
-  { /* Formik */ }
+  {
+    /* Formik */
+  }
   const initialValues = {
     prefix: '',
     username: '',
@@ -45,7 +53,7 @@ export default function RegisterForm() {
     school: '',
     classlvl: '',
     purpose: [],
-    platform: []
+    platform: [],
   }
 
   const onSubmit = async (values: RegisterForm, { setSubmitting }: any) => {
@@ -56,7 +64,7 @@ export default function RegisterForm() {
         render: `${error.value}`,
         type: 'error',
         isLoading: false,
-        autoClose: 2000
+        autoClose: 2000,
       })
       setSubmitting(false)
       return
@@ -65,7 +73,7 @@ export default function RegisterForm() {
       render: 'Registered Successfully',
       type: 'success',
       isLoading: false,
-      autoClose: 2000
+      autoClose: 2000,
     })
     router.push('/')
     setSubmitting(false)
@@ -79,138 +87,131 @@ export default function RegisterForm() {
     school: Yup.string().required('Required'),
     classlvl: Yup.string().required('Required'),
     purpose: Yup.array().required('Required'),
-    platform: Yup.array().required('Required')
+    platform: Yup.array().required('Required'),
   })
 
-  // questions
-  // Figma Openhouse or die
+  // use reuseable components here it will be better
+  interface InputFieldProps {
+    name: string
+    label: string
+    holder: string
+  }
+
+  const InputField: React.FC<InputFieldProps> = ({ label, name, holder }) => {
+    return (
+      <div>
+        <label htmlFor="name">{label}</label>
+        <div>
+          <Field
+            placeholder={holder}
+            name={name}
+            type="text"
+            id={name}
+            className="min-w-full rounded-md border"
+          />
+          <ErrorMessage name={name} className="text-red-400" component="div" />
+        </div>
+      </div>
+    )
+  }
+
+  type SelectFieldProps = {
+    label: string
+    name: string
+    options: { value: string; label: string }[]
+  }
+
+  const SelectField: React.FC<SelectFieldProps> = ({ label, name, options }) => {
+    return (
+      <div>
+        <p>{label}</p>
+        <p>ตอบได้มากกว่า 1 ข้อ</p>
+        {options.map((option) => (
+          <div key={option.value}>
+            <label>
+              <Field type="checkbox" name={name} value={option.value} />
+              {option.label}
+            </label>
+          </div>
+        ))}
+        <ErrorMessage name={name} className="text-red-400" component="div" />
+      </div>
+    )
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <div>This is Register Page</div>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={validationSchema}
-      >
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {({ isSubmitting }) => (
-          <Form className="border min-w-[85%] md:min-w-[60%] lg:min-w-[50%]">
-
-            <div className="mt-3">
-              <label>Prefix</label>
-              <div>
-                <label>
-                  <Field type="radio" name="prefix" value="male" />
-                  Male
-                </label>
-              </div>
-              <div>
-                <label>
-                  <Field type="radio" name="prefix" value="female" />
-                  Female
-                </label>
-              </div>
-              <ErrorMessage name="prefix" className="text-red-400" component="div" />
+          <Form className="flex min-w-[85%] flex-col space-y-4 md:min-w-[60%] lg:min-w-[50%]">
+            <div className="flex flex-col items-start justify-center space-y-5">
+              <InputField
+                name="username"
+                label="ชื่อผู้ใช้ (username)"
+                holder="ความยาวไม่เกิน 22 ตัวอักษร"
+              />
+              <InputField
+                name="firstname"
+                label="ชื่อจริง (ไม่ต้องมีคำนำหน้า)"
+                holder="เรียนเด่น"
+              />
+              <InputField name="lastname" label="นามสกุล" holder="เล่นดี" />
             </div>
 
-            <div className="mt-3">
-              <label>Username</label>
+            <div className="my-8 h-2 w-screen bg-greenText"></div>
+
+            <div className="flex flex-col items-start justify-center space-y-5">
               <div>
-                <Field name="username" type="text" className="border rounded-md min-w-full" />
-                <ErrorMessage name="username" className="text-red-400" component="div" />
+                <label>Status</label>
+                <div>
+                  <label>
+                    <Field type="radio" name="status" value="student" />
+                    Student
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <Field type="radio" name="status" value="teacher" />
+                    Teacher
+                  </label>
+                </div>
+                <ErrorMessage name="status" className="text-red-400" component="div" />
               </div>
+              <InputField name="school" label="โรงเรียน" holder="โรงเรียนเตรียมอุดมศึกษา" />
+              <InputField name="grade" label="ระดับชั้น" holder="ม.3" />
             </div>
 
-            <div className="mt-3">
-              <label>Firstname</label>
-              <div>
-                <Field name="firstname" type="text" className="border rounded-md min-w-full" />
-                <ErrorMessage name="firstname" className="text-red-400" component="div" />
-              </div>
-            </div>
+            <div className="my-8 h-2 w-screen bg-greenText"></div>
 
-            <div className="mt-3">
-              <label>Lastname</label>
-              <div>
-                <Field name="lastname" type="text" className="border rounded-md min-w-full" />
-                <ErrorMessage name="lastname" className="text-red-400" component="div" />
-              </div>
-            </div>
+            <SelectField
+              label="ได้รับข่าวสารของ Triam Udom Open House 2025 จากที่ใดบ้าง"
+              name="purpose"
+              options={[
+                { value: 'study', label: 'Study' },
+                { value: 'research', label: 'Research' },
+                { value: 'teaching', label: 'Teaching' },
+                { value: 'other', label: 'Other' },
+              ]}
+            />
 
-            <div className="mt-3">
-              <label>School</label>
-              <div>
-                <Field name="school" type="text" className="border rounded-md min-w-full" />
-                <ErrorMessage name="school" className="text-red-400" component="div" />
-              </div>
-            </div>
+            <div className="my-8 h-2 w-screen bg-greenText"></div>
 
-            <div className="mt-3">
-              <label>Level</label>
-              <div>
-                <Field name="classlvl" as="select" className="border">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </Field>
-                <ErrorMessage name="classlvl" className="text-red-400" component="div" />
-              </div>
-            </div>
-
-            <div className="mt-3">
-              <label>Status</label>
-              <div>
-                <label>
-                  <Field type="radio" name="status" value="student" />
-                  Student
-                </label>
-              </div>
-              <div>
-                <label>
-                  <Field type="radio" name="status" value="teacher" />
-                  Teacher
-                </label>
-              </div>
-              <ErrorMessage name="status" className="text-red-400" component="div" />
-            </div>
+            <SelectField
+              label="จุดประสงค์ในการเข้าร่วม Triam Udom Open House 2025"
+              name="platform"
+              options={[
+                { value: 'study', label: 'Study' },
+                { value: 'research', label: 'Research' },
+                { value: 'teaching', label: 'Teaching' },
+                { value: 'other', label: 'Other' },
+              ]}
+            />
+            
             <div>
-              <label>Purpose</label>
-              <div>
-                <label>
-                  <Field type="checkbox" name="purpose" value="learning" />
-                  Learning
-                </label>
-              </div>
-              <div>
-                <label>
-                  <Field type="checkbox" name="purpose" value="teaching" />
-                  Teaching
-                </label>
-              </div>
-              <ErrorMessage name="purpose" className="text-red-400" component="div" />
-            </div>
-
-            <div>
-              <label>Platform</label>
-              <div>
-                <label>
-                  <Field type="checkbox" name="platform" value="web" />
-                  Web
-                </label>
-              </div>
-              <div>
-                <label>
-                  <Field type="checkbox" name="platform" value="mobile" />
-                  Mobile
-                </label>
-              </div>
-              <ErrorMessage name="platform" className="text-red-400" component="div" />
-            </div>
-
-            <div className="mt-3">
-              <button type="submit" disabled={isSubmitting}>Submit</button>
+              <button type="submit" disabled={isSubmitting}>
+                Submit
+              </button>
             </div>
           </Form>
         )}
