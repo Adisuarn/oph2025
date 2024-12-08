@@ -82,6 +82,8 @@ export default function RegisterForm() {
     platform: Yup.array().required('Required')
   })
 
+  // questions
+  // Figma Openhouse or die
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div>This is Register Page</div>

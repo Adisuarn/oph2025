@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
 import React, { useEffect, useState } from 'react';
 import * as motion from "motion/react-client"
 
 const Countdown = () => {
-  const ophDate = new Date("2025-01-10T00:00:00Z").getTime();
-  const [timeLeft, setTimeLeft] = useState({ days: '0', hours: '0', mins: '0', secs: '0' });
+  const ophDate = new Date('2025-01-10T00:00:00Z').getTime()
+  const [timeLeft, setTimeLeft] = useState({ days: '0', hours: '0', mins: '0', secs: '0' })
 
   function calculateTimeLeft() {
     const now = new Date().getTime();
     const difference = ophDate - now;
 
     if (difference <= 0) {
-      return { days: '00', hours: '00', mins: '00', secs: '00' };
+      return { days: '00', hours: '00', mins: '00', secs: '00' }
     }
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -25,7 +25,7 @@ const Countdown = () => {
       hours: String(hours).padStart(2, '0'),
       mins: String(mins).padStart(2, '0'),
       secs: String(secs).padStart(2, '0'),
-    };
+    }
   }
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Countdown = () => {
 
   return (
     <section>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <div className="flex space-x-2 lg:space-x-4 xl:space-x-8">
           <CountdownBox time={timeLeft.days} unit="Days" />
           <CountdownBox time={timeLeft.hours} unit="Hours" />
@@ -56,7 +56,7 @@ const Countdown = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Countdown;
+export default Countdown

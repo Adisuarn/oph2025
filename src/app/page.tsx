@@ -37,9 +37,9 @@ const Page = async () => {
           <Landing className="w-[100vw] md:h-[100vh]" />
         </div>
         <div className="absolute left-1/2 hidden -translate-x-1/2 overflow-hidden lg:-top-4 lg:block xl:-top-14">
-          <MLanding1 className="lg:h-[110vh] lg:w-[105vw] xl:w-[screen]" />
+          <MLanding1 className="lg:h-[110vh] lg:w-[105vw] xl:w-[120vw]" />
         </div>
-        <div className="absolute -top-4 left-1/2 z-40 -translate-x-1/2 md:-top-4 lg:top-[10%]">
+        <div className="absolute top-4 sm:-top-4 left-1/2 z-40 -translate-x-1/2 md:-top-4 lg:top-[10%]">
           <TUOPH className="w-[95vw] lg:w-[80vw]" />
         </div>
         <div className="md:hidden"></div>
