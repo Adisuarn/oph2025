@@ -30,9 +30,9 @@ const TUOPH: FC<{
           width="867.51"
           height="171.963"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -62,9 +62,9 @@ const TUOPH: FC<{
           y2="86.9601"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D9392B" />
-          <stop offset="0.355" stop-color="#AC1D16" />
-          <stop offset="1" stop-color="#7E0001" />
+          <stop stopColor="#D9392B" />
+          <stop offset="0.355" stopColor="#AC1D16" />
+          <stop offset="1" stopColor="#7E0001" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_301_300"
@@ -74,9 +74,9 @@ const TUOPH: FC<{
           y2="341.517"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D9392B" />
-          <stop offset="0.355" stop-color="#AC1D16" />
-          <stop offset="1" stop-color="#7E0001" />
+          <stop stopColor="#D9392B" />
+          <stop offset="0.355" stopColor="#AC1D16" />
+          <stop offset="1" stopColor="#7E0001" />
         </linearGradient>
       </defs>
     </svg>

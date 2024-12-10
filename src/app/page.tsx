@@ -31,19 +31,19 @@ const Page = async () => {
           `,
         }}
       />
-      <section className="relative flex h-screen flex-col items-center justify-between space-y-8 overflow-hidden bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:justify-around lg:justify-end">
-        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 lg:hidden">
+      <section className="relative top-0 flex min-h-screen w-screen flex-col items-center justify-between overflow-hidden bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:justify-around lg:justify-end">
+      <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 lg:hidden">
           <Landing className="w-[100vw] md:h-[100vh]" />
         </div>
-        <div className="absolute left-1/2 hidden -translate-x-1/2 overflow-hidden lg:-top-4 lg:block xl:-top-14">
-          <MLanding1 className="lg:h-[110vh] lg:w-[105vw] xl:w-[120vw]" />
+        <div className="absolute left-1/2 top-0 hidden min-h-screen w-full -translate-x-1/2 lg:block">
+          <MLanding1 className="lg:w-[100vw] xl:h-full xl:min-h-screen xl:w-full overflow-x-hidden object-cover" />
         </div>
-        <div className="absolute -top-4 left-1/2 z-40 -translate-x-1/2 md:-top-4 lg:top-[10%]">
+        <div className="absolute left-1/2 z-40 -translate-x-1/2 top-8 md:top-0 lg:top-[10%]">
           <TUOPH className="w-[95vw] lg:w-[80vw]" />
         </div>
         <div className="md:hidden"></div>
-        <div className="relative -top-2 flex flex-col items-center justify-center space-y-4 md:top-8 md:space-y-8 lg:-top-4 xl:mb-8 xl:space-y-10 2xl:space-y-14">
-          <div className="rounded-full bg-gradient-to-r from-[#E03C2E] to-[#F28041] px-10 py-3 font-semibold text-white shadow-2xl transition-all hover:scale-105 md:text-xl xl:py-4 xl:text-2xl">
+        <div className="relative -top-2 flex flex-col items-center justify-center space-y-8 md:top-8 md:space-y-8 lg:-top-4 lg:mb-4 2xl:mb-16 xl:space-y-10 2xl:space-y-14">
+          <div className="rounded-full bg-gradient-to-r from-[#E03C2E] to-[#F28041] px-10 py-3 font-semibold text-white shadow-2xl transition-all hover:scale-105 md:text-xl xl:py-4 xl:text-2xl 2xl:text-3xl 2xl:px-12 2xl:py-4">
             10-11 January 2025
           </div>
           <Countdown />

@@ -6,7 +6,7 @@ import { seo } from "~/libs/seo";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from '../components/theme-provider'
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from '@vercel/analytics/next';
+// import { Analytics } from '@vercel/analytics/next';
 import Navbar from "~/app/_components/Header/Navbar";
 import Footer from "~/app/_components/Footer/Footer";
 
@@ -59,15 +59,15 @@ const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
             attribute="class"
             defaultTheme="light"
             enableSystem
-          >
-            {/* <Navbar /> */}
+            >
+            <Navbar />
             {children}
-            {/* <Footer /> */}
+            <Footer />
             <ToastContainer />
           </ThemeProvider>
         </QueryProvider>
         <SpeedInsights />
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );

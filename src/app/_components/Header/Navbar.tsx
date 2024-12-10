@@ -63,14 +63,10 @@ const Navbar = () => {
             หน้าแรก
           </Link>
           <DropdownMenu>
-            <DropdownMenuTrigger>การแสดง</DropdownMenuTrigger>
+            <DropdownMenuTrigger className='hover:translate-y-1 transition-all ease-in-out'>การแสดง</DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel><Link href="/e-ticket">e-ticket</Link></DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuItem className='bg-greenText text-white'><Link href="larn70">ลาน 70 ปีฯ</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href="theatre">หอประชุมฯ</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link href="" className="hover:underline">
@@ -83,9 +79,9 @@ const Navbar = () => {
             ข้อมูลเพิ่มเติม
           </Link>
         </nav>
-        <div className="md:hidden">
+        {/* <div className="md:hidden">
           <Hamburger />
-        </div>
+        </div> */}
       </div>
     </motion.div>
   )

@@ -39,8 +39,8 @@ const Countdown = () => {
 
   const CountdownBox = ({ time, unit }: { time: string; unit: string }) => (
     <div className='flex flex-col items-center justify-center space-y-1 lg:space-y-2'>
-      <motion.div className="bg-white size-14 lg:size-20 xl:size-24 rounded-xl flex flex-col justify-center items-center hover:scale-110 transition-all shadow-xl">
-        <div className='text-[#C72612] font-bold text-2xl lg:text-4xl xl:text-5xl'>{time}</div>
+      <motion.div className="bg-white size-14 md:size-20 xl:size-24 rounded-xl flex flex-col justify-center items-center hover:scale-110 transition-all shadow-xl">
+        <div className='text-[#C72612] font-bold text-2xl md:text-4xl xl:text-5xl'>{time}</div>
       </motion.div>
       <div className='text-white opacity-70 xl:text-sm'>{unit}</div>
     </div>

@@ -59,7 +59,7 @@ const Footer = async ({ theme }: { theme?: string }) => {
               <p className="hover:underline">ชมรม</p>
             </Link>
             {session && (
-              <Link href="/account/ticket">
+              <Link href="/e-ticket">
                 <p className="hover:underline">E-ticket</p>
               </Link>
             )}

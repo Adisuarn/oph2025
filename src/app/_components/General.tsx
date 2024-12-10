@@ -1,13 +1,10 @@
 'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-
 import Randomizer from '~/app/_components/Randomizer'
-
 import BackArrow from '~/vectors/preview/BackArrow'
-import Profile from '~/vectors/preview/Profile'
-import Section from '~/vectors/preview/Section'
 import BigFooter from '~/vectors/preview/BigFooter'
 import BigLamp from '~/vectors/preview/BigLamp'
 import BigLowercurve from '~/vectors/preview/BigLowercurve'
@@ -23,6 +20,8 @@ import Frames from '~/vectors/preview/Frames'
 import Lamp from '~/vectors/preview/Lamp'
 import LeftFrames from '~/vectors/preview/LeftFrames'
 import Lowercurve from '~/vectors/preview/Lowercurve'
+import Profile from '~/vectors/preview/Profile'
+import Section from '~/vectors/preview/Section'
 import SLamp1 from '~/vectors/preview/SLamp1'
 import SLamp2 from '~/vectors/preview/SLamp2'
 import SLamp3 from '~/vectors/preview/SLamp3'
@@ -45,29 +44,33 @@ const General: React.FC<{
       case 'clubs':
         return {
           titles: ['ชมรมนี้', 'ทำอะไร'],
-          textClasses: ['sm:py-1 sm:text-3xl sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.5] lg:py-2 lg:text-7xl lg:leading-[1.3]', 'sm:text-3xl md:text-5xl lg:text-7xl'],
-        };
+          textClasses: [
+            'sm:py-1 sm:text-3xl sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.5] lg:py-2 lg:text-7xl lg:leading-[1.3]',
+            'sm:text-3xl md:text-5xl lg:text-7xl',
+          ],
+        }
       case 'organizations':
         return {
           titles: ['องค์กรนี้', 'ทำอะไร'],
-          textClasses: ['-mb-2 sm:py-1 sm:text-xs sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.4] lg:py-2 lg:text-6xl lg:leading-[1.3]', 'sm:text-xl md:text-4xl lg:text-5xl'],
-        };
+          textClasses: [
+            '-mb-2 sm:py-1 sm:text-xs sm:leading-[1.8] md:py-2 md:text-5xl md:leading-[1.4] lg:py-2 lg:text-6xl lg:leading-[1.3]',
+            'sm:text-xl md:text-4xl lg:text-5xl',
+          ],
+        }
       default:
         return {
           titles: ['การรับสมัคร', 'และ', 'การสอบเข้า'],
-          textClasses: ['sm:text-xs md:text-4xl lg:text-5xl font-Thai', 'sm:text-3xl md:text-6xl lg:text-7xl', 'sm:text-xl md:text-4xl lg:text-5xl'],
-        };
+          textClasses: [
+            'sm:text-xs md:text-4xl lg:text-5xl font-Thai',
+            'sm:text-3xl md:text-6xl lg:text-7xl',
+            'sm:text-xl md:text-4xl lg:text-5xl',
+          ],
+        }
     }
-  };
-  
-  const Ques1 = ({
-    titles,
-    textClasses,
-  }: {
-    titles: string[];
-    textClasses: string[];
-  }) => (
-    <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
+  }
+
+  const Ques1 = ({ titles, textClasses }: { titles: string[]; textClasses: string[] }) => (
+    <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col lg:mr-4 xl:mr-0">
       {titles.map((title, index) => (
         <p key={index} className={textClasses[index]}>
           {title}
@@ -77,35 +80,37 @@ const General: React.FC<{
         <SLamp1 className="hidden sm:block sm:w-28" />
       </div>
     </div>
-  );
-  
+  )
+
   const getQuest2 = (tag: string) => {
     switch (tag) {
       case 'clubs':
         return {
           titles: ['ประโยชน์', 'ที่ได้รับ', 'จากการเข้าชมรม'],
-          textClasses: ['sm:text-4xl md:text-5xl lg:text-7xl', 'sm:text-lg md:text-2xl lg:text-4xl', 'sm:-mt-2 sm:text-lg md:text-lg lg:text-3xl'],
-        };
+          textClasses: [
+            'sm:text-4xl md:text-5xl lg:text-7xl',
+            'sm:text-lg md:text-2xl lg:text-4xl',
+            'sm:-mt-2 sm:text-lg md:text-lg lg:text-3xl',
+          ],
+        }
       case 'organizations':
         return {
           titles: ['ตำแหน่ง', '/หน้าที่'],
           textClasses: ['sm:text-lg md:text-5xl lg:text-6xl', 'sm:text-lg md:text-2xl lg:text-4xl'],
-        };
+        }
       default:
         return {
           titles: ['วิชา /', 'หลักสูตรเพิ่มเติม', 'ที่เรียน'],
-          textClasses: ['sm:text-2xl md:text-7xl', 'sm:text-lg md:text-2xl', 'sm:text-lg md:text-2xl'],
-        };
+          textClasses: [
+            'sm:text-2xl md:text-7xl',
+            'sm:text-lg md:text-2xl',
+            'sm:text-lg md:text-2xl',
+          ],
+        }
     }
-  };
-  
-  const Quest2 = ({
-    titles,
-    textClasses,
-  }: {
-    titles: string[];
-    textClasses: string[];
-  }) => (
+  }
+
+  const Quest2 = ({ titles, textClasses }: { titles: string[]; textClasses: string[] }) => (
     <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col md:ml-4">
       {titles.map((title, index) => (
         <p key={index} className={textClasses[index]}>
@@ -116,7 +121,7 @@ const General: React.FC<{
         <SLamp2 className="hidden sm:block sm:w-28" />
       </div>
     </div>
-  );
+  )
 
   const getQuest3 = (tag: string) => {
     switch (tag) {
@@ -124,28 +129,29 @@ const General: React.FC<{
         return {
           titles: ['ผลงาน', 'ของชมรม'],
           textClasses: ['md:text-5xl lg:text-7xl', 'md:text-4xl lg:text-5xl'],
-        };
+        }
       case 'organizations':
         return {
           titles: ['ผลงาน', 'ขององค์กร'],
-          textClasses: ['sm:text-5xl md:text-4xl lg:text-5xl', 'sm:text-3xl md:text-3xl lg:text-5xl'],
-        };
+          textClasses: [
+            'sm:text-5xl md:text-4xl lg:text-5xl',
+            'sm:text-3xl md:text-3xl lg:text-5xl',
+          ],
+        }
       default:
         return {
           titles: ['ความน่าสนใจ', 'ของ', 'สายการเรียน'],
-          textClasses: ['-mb-3 sm:text-xl sm:leading-[2] md:text-4xl md:leading-[1.7] lg:text-5xl lg:leading-[1.5]', 'sm:text-5xl md:text-6xl lg:text-7xl', 'sm:text-3xl md:text-4xl lg:text-5xl'],
-        };
+          textClasses: [
+            '-mb-3 sm:text-xl sm:leading-[2] md:text-4xl md:leading-[1.7] lg:text-5xl lg:leading-[1.5]',
+            'sm:text-5xl md:text-6xl lg:text-7xl',
+            'sm:text-3xl md:text-4xl lg:text-5xl',
+          ],
+        }
     }
-  };
-  
-  const Quest3 = ({
-    titles,
-    textClasses,
-  }: {
-    titles: string[];
-    textClasses: string[];
-  }) => (
-    <div className="flex bg-gradient-to-b lg:mr-4 xl:mr-0 from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col">
+  }
+
+  const Quest3 = ({ titles, textClasses }: { titles: string[]; textClasses: string[] }) => (
+    <div className="flex bg-gradient-to-b from-heroMiddle to-greenText bg-clip-text text-xl font-bold text-transparent sm:w-2/5 sm:flex-col lg:mr-4 xl:mr-0">
       {titles.map((title, index) => (
         <p key={index} className={textClasses[index]}>
           {title}
@@ -155,69 +161,69 @@ const General: React.FC<{
         <SLamp3 className="hidden sm:block sm:w-28" />
       </div>
     </div>
-  );
-  
+  )
+
   const getContent1 = (tag: string, editFormData: any) => {
     switch (tag) {
       case 'clubs':
-        return editFormData.activities || '';
+        return editFormData.activities || ''
       case 'organizations':
-        return editFormData.activities || '';
+        return editFormData.activities || ''
       default:
-        return editFormData.admissions || '';
+        return editFormData.admissions || ''
     }
-  };
-  
+  }
+
   const ContentBox1 = ({ content1 }: { content1: string }) => (
     <div
       dangerouslySetInnerHTML={{ __html: content1 }}
       className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
     ></div>
-  );
+  )
 
   const getContent2 = (tag: string, editFormData: any) => {
     switch (tag) {
       case 'clubs':
-        return editFormData.benefits || '';
+        return editFormData.benefits || ''
       case 'organizations':
-        return editFormData.position || '';
+        return editFormData.position || ''
       default:
-        return editFormData.courses || '';
+        return editFormData.courses || ''
     }
-  };
-  
+  }
+
   const ContentBox2 = ({ content2 }: { content2: string }) => (
     <div
       dangerouslySetInnerHTML={{ __html: content2 }}
       className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
     ></div>
-  );
+  )
 
   const getContent3 = (tag: string, editFormData: any) => {
     switch (tag) {
       case 'clubs':
-        return editFormData.working || '';
+        return editFormData.working || ''
       case 'organizations':
-        return editFormData.working || '';
+        return editFormData.working || ''
       default:
-        return editFormData.interests || '';
+        return editFormData.interests || ''
     }
-  };
-  
+  }
+
   const ContentBox3 = ({ content3 }: { content3: string }) => (
     <div
       dangerouslySetInnerHTML={{ __html: content3 }}
       className="w-full rounded-3xl bg-[#FFF7EB] bg-opacity-50 p-6 font-BaiJamjuree text-xs font-normal text-greenText sm:text-lg"
     ></div>
-  );
+  )
 
-  const { titles: titles1, textClasses: textClasses1 } = getQues1(editFormData.tag);
-  const { titles: titles2, textClasses: textClasses2 } = getQuest2(editFormData.tag);
-  const { titles: titles3, textClasses: textClasses3 } = getQuest3(editFormData.tag);
+  const { titles: titles1, textClasses: textClasses1 } = getQues1(editFormData.tag)
+  const { titles: titles2, textClasses: textClasses2 } = getQuest2(editFormData.tag)
+  const { titles: titles3, textClasses: textClasses3 } = getQuest3(editFormData.tag)
 
-  const content1 = getContent1(editFormData.tag, editFormData);
-  const content2 = getContent2(editFormData.tag, editFormData);
-  const content3 = getContent3(editFormData.tag, editFormData);
+  const content1 = getContent1(editFormData.tag, editFormData)
+  const content2 = getContent2(editFormData.tag, editFormData)
+  const content3 = getContent3(editFormData.tag, editFormData)
 
   const handleImageLoad = () => {
     setImageLoaded(true)
@@ -227,8 +233,8 @@ const General: React.FC<{
       <div className="absolute -top-[340px] left-1/2 z-10 -translate-x-1/2 md:-top-36">
         <Uppercurve className="w-[100vw] md:w-[100vw] lg:hidden" />
       </div>
-      <div className="absolute lg:-top-16 xl:-top-28 left-0 z-10 w-full overflow-hidden">
-        <BigUppercurve className="hidden w-full lg:h-[50vw] lg:block" />
+      <div className="absolute left-0 z-10 w-full overflow-hidden lg:-top-16 xl:-top-28">
+        <BigUppercurve className="hidden w-full lg:block lg:h-[50vw]" />
       </div>
       <div className="absolute right-0 z-0 overflow-hidden lg:top-[8rem] xl:top-[14rem] 2xl:top-[500px]">
         <ClubFallingLamp className="hidden lg:block lg:w-[270px] xl:w-80" />
@@ -236,13 +242,10 @@ const General: React.FC<{
       <section className="relative z-40 mx-12 pt-48 sm:mx-28 sm:pt-72 md:mx-36 md:pt-[300px] lg:mx-48 xl:mx-60 2xl:pt-[550px]">
         <section className="flex items-center justify-between">
           <div className="flex items-center justify-center space-x-1 transition-all hover:scale-105">
-            <Link href='/'>
+            <Link href="/">
               <BackArrow className="h-5 w-5 text-heroMiddle sm:h-8 sm:w-8 md:h-10 md:w-10" />
             </Link>
-            <Link
-              href='/'
-              className="text-xs text-heroMiddle sm:text-lg md:text-2xl"
-            >
+            <Link href="/" className="text-xs text-heroMiddle sm:text-lg md:text-2xl">
               ย้อนกลับ
             </Link>
           </div>
@@ -253,10 +256,11 @@ const General: React.FC<{
         <section className="w-full sm:mx-7">
           <section className="flex w-full flex-col items-center justify-center">
             <div className="relative z-20 flex h-20 w-full flex-col items-center justify-center md:mx-auto">
-              <p className="bg-gradient-to-b from-[#75B667] via-[#15786C] via-80% to-[#12665B] bg-clip-text text-center text-lg font-bold text-transparent sm:text-xl sm:font-extrabold md:text-4xl">
+              <p className="bg-gradient-to-b from-[#75B667] via-[#15786C] via-80% to-[#12665B] bg-clip-text p-2 text-center text-lg font-bold leading-[1.5] text-transparent sm:text-xl sm:font-extrabold sm:leading-[1.75] md:text-4xl md:leading-[2]">
                 {editFormData.thainame}
               </p>
             </div>
+
             <div className="ml-6 flex items-center justify-center space-x-6">
               <div className="flex items-center justify-center">
                 <Profile className="h-10 w-10 text-greenText sm:h-12 sm:w-12 md:mr-5 md:h-20 md:w-20" />
@@ -298,7 +302,7 @@ const General: React.FC<{
           {/* section1 */}
           <div className="mb-14 mt-12 flex flex-col sm:mt-5 md:mb-20 md:mt-20">
             <div className="flex flex-col items-start justify-between sm:flex-row md:mb-8">
-            <Ques1 titles={titles1} textClasses={textClasses1} />
+              <Ques1 titles={titles1} textClasses={textClasses1} />
               <div className="relative z-10 sm:w-[50vw] md:w-[60vw]">
                 <div className="absolute -left-12 -top-32 -z-10 md:-left-[21rem] lg:top-0">
                   <Stainedglass className="w-16 sm:w-32 lg:hidden" />
@@ -325,7 +329,7 @@ const General: React.FC<{
                 </div>
               </div>
             </div>
-            <ContentBox1 content1={content1} /> 
+            <ContentBox1 content1={content1} />
           </div>
           {/* section 2 */}
           <div className="mb-14 mt-3 flex flex-col sm:mt-5 md:mb-20 md:mt-8">
@@ -353,12 +357,12 @@ const General: React.FC<{
               </div>
               <Quest2 titles={titles2} textClasses={textClasses2} />
             </div>
-            <ContentBox2 content2={content2} /> 
+            <ContentBox2 content2={content2} />
           </div>
           {/* section 3 */}
           <div className="mb-14 mt-3 flex flex-col sm:mt-5 md:mb-20 md:mt-8">
             <div className="flex flex-col items-end justify-between sm:flex-row md:mb-8 md:items-center">
-            <Quest3 titles={titles3} textClasses={textClasses3} />
+              <Quest3 titles={titles3} textClasses={textClasses3} />
               <div className="relative z-10 sm:w-[50vw] md:w-[60vw]">
                 <div className="absolute -left-10 -top-60 -z-10">
                   <Lamp className="w-32 sm:hidden" />
@@ -384,7 +388,7 @@ const General: React.FC<{
                 </div>
               </div>
             </div>
-            <ContentBox3 content3={content3} /> 
+            <ContentBox3 content3={content3} />
           </div>
           {/* section 3 */}
 
@@ -436,7 +440,9 @@ const General: React.FC<{
                   </div>
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: review1.content || 'พี่เป็นคนนึงชอบการเขียนโปรแกรมและวิธีการทำงานของสิ่งต่างๆรอบตัพี่เป็นคนนึงชอบการเขียนโปรแกรมและวิธีการทำงานของสิ่งต่างๆรอบตัว พี่เลยอยากที่จะลองทำหุ่นยนต์มาตั้งแต่สมัยม.ต้น แต่พี่ไม่มีโอกาสได้ลองลงมือทำเลย พอพี่ขึ้นมัฐยม พี่เลยลองเข้าชมรมนี้ดู ชมรมนี้ทำให้พี่ได้เรียนรู้ตั้งแต่พื้นฐานไปจนถึงสามารถทำโปรเจกต์เองได้ และที่สำคัญคือเราจะได้รู้จัก พี่ๆ เพื่อนๆ ที่สนใจในด้านเดียวกันและเรียนรู้ไปด้วยกัน ในตอนที่ทำ โปรเจกต์ แล้วติดปัญหา ก็สามารถนำมาปรึกษาคนในชมรมได้ สำหรับพี่แล้ว พี่รู้สึกว่าพี่คิดถูกมากๆ ที่เข้าชมรมนี้ว พี่เลยอยากที่จะลองทำหุ่นยนต์มาตั้งแต่สมัยม.ต้น แต่พี่ไม่มีโอกาสได้ลองลงมือทำเลย พอพี่ขึ้นมัฐยม พี่เลยลองเข้าชมรมนี้ดู ชมรมนี้ทำให้พี่ได้เรียนรู้ตั้งแต่พื้นฐานไปจนถึงสามารถทำโปรเจกต์เองได้ และที่สำคัญคือเราจะได้รู้จัก พี่ๆ เพื่อนๆ ที่สนใจในด้านเดียวกันและเรียนรู้ไปด้วยกัน ในตอนที่ทำ โปรเจกต์ แล้วติดปัญหา ก็สามารถนำมาปรึกษาคนในชมรมได้ สำหรับพี่แล้ว พี่รู้สึกว่าพี่คิดถูกมากๆ ที่เข้าชมรมนี้',
+                      __html:
+                        review1.content ||
+                        'พี่เป็นคนนึงชอบการเขียนโปรแกรมและวิธีการทำงานของสิ่งต่างๆรอบตัพี่เป็นคนนึงชอบการเขียนโปรแกรมและวิธีการทำงานของสิ่งต่างๆรอบตัว พี่เลยอยากที่จะลองทำหุ่นยนต์มาตั้งแต่สมัยม.ต้น แต่พี่ไม่มีโอกาสได้ลองลงมือทำเลย พอพี่ขึ้นมัฐยม พี่เลยลองเข้าชมรมนี้ดู ชมรมนี้ทำให้พี่ได้เรียนรู้ตั้งแต่พื้นฐานไปจนถึงสามารถทำโปรเจกต์เองได้ และที่สำคัญคือเราจะได้รู้จัก พี่ๆ เพื่อนๆ ที่สนใจในด้านเดียวกันและเรียนรู้ไปด้วยกัน ในตอนที่ทำ โปรเจกต์ แล้วติดปัญหา ก็สามารถนำมาปรึกษาคนในชมรมได้ สำหรับพี่แล้ว พี่รู้สึกว่าพี่คิดถูกมากๆ ที่เข้าชมรมนี้ว พี่เลยอยากที่จะลองทำหุ่นยนต์มาตั้งแต่สมัยม.ต้น แต่พี่ไม่มีโอกาสได้ลองลงมือทำเลย พอพี่ขึ้นมัฐยม พี่เลยลองเข้าชมรมนี้ดู ชมรมนี้ทำให้พี่ได้เรียนรู้ตั้งแต่พื้นฐานไปจนถึงสามารถทำโปรเจกต์เองได้ และที่สำคัญคือเราจะได้รู้จัก พี่ๆ เพื่อนๆ ที่สนใจในด้านเดียวกันและเรียนรู้ไปด้วยกัน ในตอนที่ทำ โปรเจกต์ แล้วติดปัญหา ก็สามารถนำมาปรึกษาคนในชมรมได้ สำหรับพี่แล้ว พี่รู้สึกว่าพี่คิดถูกมากๆ ที่เข้าชมรมนี้',
                     }}
                     className="text-[12px] text-white sm:text-xl"
                   ></div>
@@ -535,10 +541,11 @@ const General: React.FC<{
             )}
           </section>
 
-            <div className='mt-40'>
-            <Randomizer />
+          {editFormData.tag === 'clubs' && (
+            <div className="mt-40">
+              <Randomizer />
             </div>
-
+          )}
         </section>
       </section>
 

@@ -18,8 +18,8 @@ const YT: FC<{
           y2="36.4163"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#1A8B6D" />
-          <stop offset="1" stop-color="#09342F" />
+          <stop stopColor="#1A8B6D" />
+          <stop offset="1" stopColor="#09342F" />
         </linearGradient>
       </defs>
     </svg>
