@@ -2,6 +2,11 @@
 
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import Logo from '~/vectors/nav/logo'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
+import * as motion from 'motion/react-client'
+import { useSession } from 'next-auth/react'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,26 +15,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
-import { useMotionValueEvent, useScroll } from 'framer-motion'
-import * as motion from "motion/react-client"
-
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuGroup,
-//   DropdownMenuItem,
-//   DropdownMenuLabel,
-//   DropdownMenuPortal,
-//   DropdownMenuSeparator,
-//   DropdownMenuShortcut,
-//   DropdownMenuSub,
-//   DropdownMenuSubContent,
-//   DropdownMenuSubTrigger,
-//   DropdownMenuTrigger,
-// } from '../ui/dropdown-menu'
 import Hamburger from './Hamburger'
 
 const Navbar = () => {
+  const { status } = useSession()
+
   const [hidden, setHidden] = useState(false)
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -41,6 +31,10 @@ const Navbar = () => {
     }
   })
 
+  function Reload() {
+    location.reload()
+  }
+
   const [isOpen, setIsOpen] = useState(false)
   return (
     <motion.div
@@ -50,38 +44,53 @@ const Navbar = () => {
       }}
       animate={hidden ? 'hidden' : 'visible'}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="sticky top-0 z-50 h-16 w-screen bg-blue-600 text-white opacity-80"
+      className="sticky top-0 z-50 h-20 w-screen bg-gradient-to-r from-[#1A8B6D] to-[#0E544B] text-white"
     >
-      <div className="flex h-full items-center justify-between px-6">
-        <div className="text-lg font-bold">Logo</div>
-        <nav
-          className="hidden space-x-6 md:flex"
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-        >
-          <Link href="/" className="hover:underline">
+      <div
+        className="flex h-full cursor-pointer items-center justify-between px-6"
+        onClick={Reload}
+      >
+        <Link href="/" className="flex items-center justify-center space-x-4">
+          <Logo className="w-16" />
+          <div className="font-Inter hidden items-center text-lg text-white opacity-100 lg:flex lg:flex-col">
+            <p className="text-2xl font-bold tracking-wider">TRIAM UDOM</p>
+            <p className="font-semibold">OPEN HOUSE 2025</p>
+          </div>
+        </Link>
+        <nav className="hidden space-x-6 md:flex">
+          <Link href="/" className="underline">
             หน้าแรก
           </Link>
           <DropdownMenu>
-            <DropdownMenuTrigger className='hover:translate-y-1 transition-all ease-in-out'>การแสดง</DropdownMenuTrigger>
+            <DropdownMenuTrigger className="transition-all ease-in-out hover:translate-y-1">
+              ตารางการแสดง
+            </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem className='bg-greenText text-white'><Link href="larn70">ลาน 70 ปีฯ</Link></DropdownMenuItem>
-              <DropdownMenuItem><Link href="theatre">หอประชุมฯ</Link></DropdownMenuItem>
+              <DropdownMenuItem className="bg-greenText text-white">
+                <Link href="larn70">ลาน 70 ปีฯ</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="theatre">หอประชุมฯ</Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link href="" className="hover:underline">
-            ตารางการแสดง
+            แผนผังงาน
           </Link>
           <Link href="" className="hover:underline">
             การเดินทาง
           </Link>
           <Link href="" className="hover:underline">
-            ข้อมูลเพิ่มเติม
+            {status === 'unauthenticated' ? 
+            <Link href="/register">เข้าสู่ระบบ</Link>
+            : 
+            <Link href='e-ticket'>บัญชี</Link> 
+            }
           </Link>
         </nav>
-        {/* <div className="md:hidden">
-          <Hamburger />
-        </div> */}
+        <div className="md:hidden">
+          <Hamburger status={status} />
+        </div>
       </div>
     </motion.div>
   )

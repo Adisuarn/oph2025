@@ -13,9 +13,10 @@ export default {
 			'extra-loose': '3',
 		  },
 			fontFamily: {
-				sans: [...fontFamily.sans],
+			  sans: [...fontFamily.sans],
 			  Thai: ['Noto Sans Thai'],
 			  BaiJamjuree: ['Bai Jamjuree'],
+			  Inter: ['Inter']
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

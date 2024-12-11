@@ -1,19 +1,20 @@
-import "../app/globals.css";
-import "react-toastify/dist/ReactToastify.css";
+import '../app/globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 
-import { QueryProvider } from "~/libs/elysia/react";
-import { seo } from "~/libs/seo";
-import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from '../components/theme-provider'
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import Footer from '~/app/_components/Footer/Footer'
 // import { Analytics } from '@vercel/analytics/next';
-import Navbar from "~/app/_components/Header/Navbar";
-import Footer from "~/app/_components/Footer/Footer";
+import Navbar from '~/app/_components/Header/Navbar'
+import { QueryProvider } from '~/libs/elysia/react'
+import { seo } from '~/libs/seo'
+import { SessionProvider } from 'next-auth/react'
+import { ToastContainer } from 'react-toastify'
 
-export const metadata = seo({});
+import { ThemeProvider } from '../components/theme-provider'
+
+export const metadata = seo({})
 
 const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -40,10 +41,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
         <meta property="og:image" content="/assets/preview.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content="https://openhouse.triamudom.ac.th/"
-        />
+        <meta property="twitter:url" content="https://openhouse.triamudom.ac.th/" />
         <meta property="twitter:title" content="Triam Udom Open House 2025" />
         <meta
           property="twitter:description"
@@ -55,12 +53,10 @@ const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
       </head>
       <body className="font-Thai">
         <QueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            >
-            <Navbar />
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+            <SessionProvider>
+              <Navbar />
+            </SessionProvider>
             {children}
             <Footer />
             <ToastContainer />
@@ -70,7 +66,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = async ({ children }) => {
         {/* <Analytics /> */}
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

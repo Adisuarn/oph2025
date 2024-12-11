@@ -57,7 +57,7 @@ const Page = async({ searchParams }: { searchParams: Promise<{ [key: string ]: s
                 href="/privacy-policy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="from-24% bg-gradient-to-b from-greenishCream to-[#ADDB64] bg-clip-text text-transparent underline decoration-[#ADDB64]"
+                className="text-[#F8EB78] underline"
               >
                 นโยบายความเป็นส่วนตัว
               </Link>
@@ -67,7 +67,7 @@ const Page = async({ searchParams }: { searchParams: Promise<{ [key: string ]: s
                 href="/tos"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="from-24% bg-gradient-to-b from-greenishCream to-[#ADDB64] bg-clip-text text-transparent underline decoration-[#ADDB64]"
+                className="text-[#F8EB78] underline"
               >
                 ข้อตกลงการใช้งาน
               </Link>
