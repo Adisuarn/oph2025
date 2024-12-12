@@ -90,8 +90,7 @@ const Navbar = () => {
           </Link>
         </nav>
         <div className="md:hidden">
-          {/* <Hamburger status={status} /> */}
-          <Hamburger />
+          <Hamburger status={status} />
         </div>
       </div>
     </motion.div>

@@ -5,8 +5,7 @@ import React, { useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import * as motion from 'motion/react-client'
 
-// export default function HamClient({ status }: any) {
-export default function HamClient() {
+export default function HamClient({ status }: any) {
   const navbarRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -58,65 +57,56 @@ export default function HamClient() {
         />
       </button>
 
-      <div
-        ref={navbarRef}
-        className={
-          isOpen
-            ? 'absolute left-0 top-16 z-10 w-full translate-x-0 overflow-hidden overflow-x-hidden bg-[#2C1865] bg-opacity-80 transition-all duration-500 ease-out'
-            : 'z-60 absolute top-16 w-full translate-x-full overflow-hidden bg-[#2C1865] bg-opacity-80 transition-all duration-500 ease-out'
-        }
-      >
-        <NavE href="/" text="หน้าแรก" />
-        <button
-          className={
-            showShows
-              ? 'flex w-full items-center justify-between bg-[#462A86] bg-opacity-80 px-4 py-2 text-left text-lg text-white transition-all'
-              : 'flex w-full items-center justify-between px-4 py-2 text-left text-lg text-white transition-all'
-          }
-          onClick={() => {
-            setShowShows(!showShows)
-          }}
-        >
-          ตารางการแสดง
-          <div className="relative flex">
-            <div
-              className={`${arrow} ${
-                showShows
-                  ? 'absolute -left-[5px] top-0 rounded-l-full'
-                  : 'absolute -left-[5px] top-0 rotate-45 rounded-l-full'
-              }`}
-            ></div>
-            <div
-              className={`${arrow} ${showShows ? 'rounded-r-full' : '-rotate-45 rounded-r-full'}`}
-            ></div>
-          </div>
-        </button>
+      {isOpen && (
         <AnimatePresence>
-          {showShows && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.3,
-                delay: 0,
-              }}
-            >
-              <NavE href="/theatre" text="หอประชุมฯ" />
-              <NavE href="/larn70" text="ลาน 70 ปีฯ" />
-            </motion.div>
-          )}
+          <motion.div
+            ref={navbarRef}
+            className="absolute left-0 top-16 z-10 w-full overflow-hidden bg-[#2C1865] bg-opacity-80"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+          >
+            <NavE href="/" text="หน้าแรก" />
+            <NavE href="/inprogress" text="ตารางการแสดง" />
+              {/* <div className="relative flex">
+                <div
+                  className={`${arrow} ${
+                    showShows
+                      ? 'absolute -left-[5px] top-0 rounded-l-full'
+                      : 'absolute -left-[5px] top-0 rotate-45 rounded-l-full'
+                  }`}
+                ></div>
+                <div
+                  className={`${arrow} ${showShows ? 'rounded-r-full' : '-rotate-45 rounded-r-full'}`}
+                ></div>
+              </div> */}
+            <AnimatePresence>
+              {showShows && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: 0,
+                  }}
+                >
+                  <NavE href="/theatre" text="หอประชุมฯ" />
+                  <NavE href="/larn70" text="ลาน 70 ปีฯ" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <NavE href="/directions" text="การเดินทางมาโรงเรียน" />
+            <NavE href="/map" text="แผนผังงาน" />
+            <div>
+              {status === 'unauthenticated' ? (
+                <NavE href="auth" text="เข้าสู่ระบบ" />
+              ) : (
+                <NavE href="account" text="บัญชี" />
+              )}
+            </div>
+          </motion.div>
         </AnimatePresence>
-        <NavE href="/inprogress" text="ตารางการแสดง" />
-        <NavE href="/directions" text="การเดินทางมาโรงเรียน" />
-        <NavE href="/map" text="แผนผังงาน" />
-        {/* <div>
-          {status === 'unauthenticated' ? (
-            <NavE href="auth" text="เข้าสู่ระบบ" />
-          ) : (
-            <NavE href="account" text="บัญชี" />
-          )}
-        </div> */}
-      </div>
+      )}
     </section>
   )
 }
