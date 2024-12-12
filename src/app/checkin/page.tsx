@@ -8,8 +8,8 @@ export default async function CheckIn({ searchParams }: { searchParams: Promise<
   const session = await auth()
   
   if (!session) redirect('/auth?callbackUrl=/checkin');
-  if (!session?.user.isRegister) redirect('/register?email=' + session?.user.email);
-  if (!session?.user.isStaff) redirect('/');
+  if (!session.user.isRegister) redirect('/register?email=' + session.user.email);
+  if (!session.user.isStaff) redirect('/');
 
   const code = (await searchParams).code
   return (
@@ -19,7 +19,7 @@ export default async function CheckIn({ searchParams }: { searchParams: Promise<
           <ModeToggle />
         </div>
         <h1 className="font-Thai font-bold text-2xl">ระบบลงทะเบียนเข้างาน</h1>
-        <h1 className="text-base mt-3">Staff: {session?.user.firstname} {session?.user.lastname}</h1>
+        <h1 className="text-base mt-3">Staff: {session.user.firstname} {session.user.lastname}</h1>
         <div className="flex h-[70%] mt-5">
           <StaffForm code={code} />
         </div>
