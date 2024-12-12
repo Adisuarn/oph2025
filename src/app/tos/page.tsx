@@ -3,7 +3,6 @@ import { join } from "path";
 import markdownToHtml from "~/libs/markdownToHtml";
 
 const TOS = async () => {
-  // Read and process markdown file
   const tosFilePath = join(process.cwd(), "/src/_data/tos.md");
   const fileContents = fs.readFileSync(tosFilePath, "utf8");
   const content = await markdownToHtml(fileContents || "");
