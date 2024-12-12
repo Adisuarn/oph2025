@@ -19,6 +19,7 @@ import Hamburger from './Hamburger'
 
 const Navbar = () => {
   const { status } = useSession()
+  console.log(status)
 
   const [hidden, setHidden] = useState(false)
   const { scrollY } = useScroll()
@@ -89,7 +90,8 @@ const Navbar = () => {
           </Link>
         </nav>
         <div className="md:hidden">
-          <Hamburger status={status} />
+          {/* <Hamburger status={status} /> */}
+          <Hamburger />
         </div>
       </div>
     </motion.div>
