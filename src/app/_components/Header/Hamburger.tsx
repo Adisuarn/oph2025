@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import * as motion from 'motion/react-client'
 
@@ -21,18 +21,36 @@ export default function HamClient({ status }: any) {
   const NavE: React.FC<NavEProps> = ({ href, text }) => {
     return (
       <Link
-        className="w-full hover:"
-        onClick={() => {
-          setShowShows(false)
-          setShowOther(false)
-          setIsOpen(false)
-        }}
+        // className="w-full"
         href={href}
       >
-        <div className="py-2 pl-4 text-left text-lg text-white">{text}</div>
+        <div className="py-2 pl-4 text-left text-lg text-white active:underline active:bg-[#0E544B]">{text}</div>
       </Link>
     )
   }
+
+  useEffect(() => {
+    setShowOther(false);
+    setShowShows(false);
+
+    const detectOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const isNavbarClicked =
+        isOpen && navbarRef.current && !navbarRef.current.contains(target);
+      const isButtonClicked =
+        buttonRef.current && buttonRef.current.contains(target);
+
+      if (isNavbarClicked && !isButtonClicked) {
+        setIsOpen(false);
+      }
+    };
+
+    document.body.addEventListener("mousedown", detectOutside);
+
+    return () => {
+      document.body.removeEventListener("mousedown", detectOutside);
+    };
+  }, [isOpen]);
 
   return (
     <section>
@@ -57,20 +75,22 @@ export default function HamClient({ status }: any) {
         />
       </button>
 
+      <AnimatePresence>
       {isOpen && (
-        <AnimatePresence>
           <motion.div
             ref={navbarRef}
-            className="absolute left-0 top-20 w-full overflow-hidden bg-green-500 bg-opacity-80"
+            className="absolute left-0 top-20 w-full overflow-hidden bg-[#1A8B6D] bg-opacity-80"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
+            // exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
             <NavE href="/" text="หน้าแรก" />
-            <div className='flex justify-around items-center w-full'>
+            <div className='flex justify-between items-center w-full'
+            onClick={() => setShowShows(!showShows)}
+            >
               <NavE href="/inprogress" text="ตารางการแสดง" />
-              <div className="relative flex">
+              <div className="relative flex mr-8">
                 <div
                   className={`${arrow} ${
                     showShows
@@ -92,6 +112,7 @@ export default function HamClient({ status }: any) {
                     duration: 0.3,
                     delay: 0,
                   }}
+                  className='bg-[#0E544B] bg-opacity-60 pl-4'
                 >
                   <NavE href="/theatre" text="หอประชุมฯ" />
                   <NavE href="/larn70" text="ลาน 70 ปีฯ" />
@@ -106,8 +127,8 @@ export default function HamClient({ status }: any) {
                 <NavE href="account" text="บัญชี" />
               )}
           </motion.div>
-        </AnimatePresence>
       )}
+      </AnimatePresence>
     </section>
   )
 }

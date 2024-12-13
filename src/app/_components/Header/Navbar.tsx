@@ -50,7 +50,7 @@ const Navbar = () => {
       <div
         className="flex h-full cursor-pointer items-center justify-between px-6"
       >
-        <Link onClick={Reload} href="/" className="flex items-center justify-center space-x-4">
+        <Link href="/" className="flex items-center justify-center space-x-4">
           <Logo className="w-16" />
           <div className="font-Inter  items-center text-lg text-white opacity-100 flex flex-col">
             <p className="text-md lg:text-2xl font-bold tracking-wider">TRIAM UDOM</p>
