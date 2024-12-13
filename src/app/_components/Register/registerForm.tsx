@@ -125,12 +125,12 @@ export default function RegisterForm() {
     return (
       <div>
         {options.map((option) => (
-        <label key={option.value} className="flex items-center space-x-2 cursor-pointer">
-          <Field type="radio" name={name} value={option.value} className="peer hidden" />
-          <div className="border-gray-400 h-6 w-6 rounded-full border-2 peer-checked:border-red-500 peer-checked:bg-blue-700"></div>
-          <span className="text-gray-700">{option.label}</span>
-        </label>
-      ))}
+          <label key={option.value} className="flex items-center space-x-2 cursor-pointer">
+            <Field type="radio" name={name} value={option.value} className="peer hidden" />
+            <div className="border-gray-400 h-6 w-6 rounded-full border-2 peer-checked:border-red-500 peer-checked:bg-blue-700"></div>
+            <span className="text-gray-700">{option.label}</span>
+          </label>
+        ))}
       </div>
     )
   }
@@ -191,8 +191,8 @@ export default function RegisterForm() {
                   { label: 'นักเรียน', value: 'student' },
                   { label: 'ผู้ปกครอง', value: 'parents' },
                   { label: 'ครู / บุคลากรโรงเรียน', value: 'teachers' },
-                  { label: 'อื่น ๆ', value: 'Rothers'}
-                ]}/>
+                  { label: 'อื่น ๆ', value: 'Rothers' }
+                ]} />
                 <InputField name="school" label="โรงเรียน" holder="โรงเรียนเตรียมอุดมศึกษา" />
                 <InputField name="classlvl" label="ระดับชั้น" holder="ม.3" />
               </div>
@@ -235,33 +235,36 @@ export default function RegisterForm() {
                   { label: 'อื่น ๆ โปรดระบุ:', value: 'others' },
                 ]}
               />
+
+              <div className='flex flex-col justify-center items-center'>
+                <button type="submit" disabled={isSubmitting}>
+                  Submit
+                </button>
+                <div className="text-xs font-medium text-black md:text-sm">
+                  การลงทะเบียนถือว่ายอมรับ
+                  <Link
+                    href="/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#F8EB78] underline"
+                  >
+                    นโยบายความเป็นส่วนตัว
+                  </Link>
+                  <br />
+                  และ
+                  <Link
+                    href="/tos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#F8EB78] underline"
+                  >
+                    ข้อตกลงการใช้งาน
+                  </Link>
+                </div>
+              </div>
+              
             </Form>
-            <div className='flex flex-col justify-center items-center'>
-              <button type="submit" disabled={isSubmitting}>
-                Submit
-              </button>
-              <div className="text-xs font-medium text-black md:text-sm">
-              การลงทะเบียนถือว่ายอมรับ
-              <Link
-                href="/privacy-policy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#F8EB78] underline"
-              >
-                นโยบายความเป็นส่วนตัว
-              </Link>
-              <br />
-              และ
-              <Link
-                href="/tos"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#F8EB78] underline"
-              >
-                ข้อตกลงการใช้งาน
-              </Link>
-            </div>
-            </div>
+            
           </div>
         )}
       </Formik>

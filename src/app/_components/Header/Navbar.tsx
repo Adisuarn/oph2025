@@ -81,13 +81,13 @@ const Navbar = () => {
             การเดินทาง
           </Link>
           {status === 'unauthenticated' ? (
-            <Link href="/register" className="hover:underline">
+            <Link href="/auth" className="hover:underline">
               เข้าสู่ระบบ
             </Link>
           ) :
             status === 'authenticated' &&
             (
-            <Link href="e-ticket" className="hover:underline">
+            <Link href="/e-ticket" className="hover:underline">
               บัญชี
             </Link>
           )}
