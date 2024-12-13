@@ -33,10 +33,9 @@ const Page = async () => {
         }}
       />
       <motion.section
-        
-        initial={{ opacity: 0.7, y: -20 }}
+        initial={{ opacity: 0.9, y: -5 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2, ease: "easeIn" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="relative top-0 -mt-20 flex min-h-screen w-screen flex-col items-center justify-between overflow-hidden bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:justify-around lg:justify-end"
       >
         <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 lg:hidden">
@@ -45,7 +44,7 @@ const Page = async () => {
         <div className="absolute left-1/2 top-0 hidden min-h-screen w-full -translate-x-1/2 lg:block">
           <MLanding1 className="overflow-x-hidden object-cover lg:w-[100vw] xl:h-full xl:min-h-screen xl:w-full" />
         </div>
-        <div className="absolute left-1/2 top-8 z-40 -translate-x-1/2 md:top-0 lg:top-[10%]">
+        <div className="absolute left-1/2 top-14 z-40 -translate-x-1/2 md:top-0 lg:top-[10%]">
           <TUOPH className="w-[95vw] lg:w-[80vw]" />
         </div>
         <div className="md:hidden"></div>

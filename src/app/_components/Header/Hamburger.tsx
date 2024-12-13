@@ -21,7 +21,7 @@ export default function HamClient({ status }: any) {
   const NavE: React.FC<NavEProps> = ({ href, text }) => {
     return (
       <Link
-        className="w-full"
+        className="w-full hover:"
         onClick={() => {
           setShowShows(false)
           setShowOther(false)
@@ -61,14 +61,16 @@ export default function HamClient({ status }: any) {
         <AnimatePresence>
           <motion.div
             ref={navbarRef}
-            className="absolute left-0 top-16 z-10 w-full overflow-hidden bg-[#2C1865] bg-opacity-80"
+            className="absolute left-0 top-20 w-full overflow-hidden bg-green-500 bg-opacity-80"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
             <NavE href="/" text="หน้าแรก" />
-            <NavE href="/inprogress" text="ตารางการแสดง" />
-              {/* <div className="relative flex">
+            <div className='flex justify-around items-center w-full'>
+              <NavE href="/inprogress" text="ตารางการแสดง" />
+              <div className="relative flex">
                 <div
                   className={`${arrow} ${
                     showShows
@@ -79,7 +81,8 @@ export default function HamClient({ status }: any) {
                 <div
                   className={`${arrow} ${showShows ? 'rounded-r-full' : '-rotate-45 rounded-r-full'}`}
                 ></div>
-              </div> */}
+              </div>
+            </div>
             <AnimatePresence>
               {showShows && (
                 <motion.div
@@ -97,13 +100,11 @@ export default function HamClient({ status }: any) {
             </AnimatePresence>
             <NavE href="/directions" text="การเดินทางมาโรงเรียน" />
             <NavE href="/map" text="แผนผังงาน" />
-            <div>
               {status === 'unauthenticated' ? (
                 <NavE href="auth" text="เข้าสู่ระบบ" />
               ) : (
                 <NavE href="account" text="บัญชี" />
               )}
-            </div>
           </motion.div>
         </AnimatePresence>
       )}

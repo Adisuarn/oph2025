@@ -14,7 +14,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
+} from '~/shadcn/dropdown-menu'
 import Hamburger from './Hamburger'
 
 const Navbar = () => {
@@ -49,13 +49,12 @@ const Navbar = () => {
     >
       <div
         className="flex h-full cursor-pointer items-center justify-between px-6"
-        onClick={Reload}
       >
-        <Link href="/" className="flex items-center justify-center space-x-4">
+        <Link onClick={Reload} href="/" className="flex items-center justify-center space-x-4">
           <Logo className="w-16" />
-          <div className="font-Inter hidden items-center text-lg text-white opacity-100 lg:flex lg:flex-col">
-            <p className="text-2xl font-bold tracking-wider">TRIAM UDOM</p>
-            <p className="font-semibold">OPEN HOUSE 2025</p>
+          <div className="font-Inter  items-center text-lg text-white opacity-100 flex flex-col">
+            <p className="text-md lg:text-2xl font-bold tracking-wider">TRIAM UDOM</p>
+            <p className="text-sm lg:text-lg font-semibold">OPEN HOUSE 2025</p>
           </div>
         </Link>
         <nav className="hidden space-x-6 md:flex">
