@@ -119,8 +119,8 @@ export default function HamClient({ status }: any) {
                 </motion.div>
               )}
             </AnimatePresence>
+            <NavE href="/maps" text="แผนผังงาน" />
             <NavE href="/directions" text="การเดินทางมาโรงเรียน" />
-            <NavE href="/map" text="แผนผังงาน" />
               {status === 'unauthenticated' ? (
                 <NavE href="auth" text="เข้าสู่ระบบ" />
               ) : (

@@ -6,6 +6,7 @@ import { useState } from 'react'
 import Clubs from '~/_data/content/clubs.json'
 import { AnimatePresence } from 'framer-motion'
 import * as motion from "motion/react-client"
+import BackArrow from '~/vectors/preview/BackArrow'
 
 const SearchBar = () => {
   const [query, setQuery] = useState('')
@@ -53,7 +54,15 @@ const SearchBar = () => {
   }
 
   return (
-    <section className="flex flex-col items-center bg-blue-50">
+    <section className="flex flex-col min-h-screen items-center bg-blue-50">
+<div className="flex items-center justify-center space-x-1 transition-all hover:scale-105">
+            <Link href="/">
+              <BackArrow className="h-5 w-5 text-heroMiddle sm:h-8 sm:w-8 md:h-10 md:w-10" />
+            </Link>
+            <Link href="/" className="text-xs text-heroMiddle sm:text-lg md:text-2xl">
+              ย้อนกลับ
+            </Link>
+          </div>
       <input
         type="text"
         placeholder="Search..."

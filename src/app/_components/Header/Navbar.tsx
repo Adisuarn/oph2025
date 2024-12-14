@@ -1,25 +1,19 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import Logo from '~/vectors/nav/logo'
-import { useMotionValueEvent, useScroll } from 'framer-motion'
+import { AnimatePresence, useMotionValueEvent, useScroll } from 'framer-motion'
 import * as motion from 'motion/react-client'
 import { useSession } from 'next-auth/react'
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '~/shadcn/dropdown-menu'
 import Hamburger from './Hamburger'
 
 const Navbar = () => {
   const { status } = useSession()
   console.log(status)
+  const [shows, setShows] = useState(false)
 
   const [hidden, setHidden] = useState(false)
   const { scrollY } = useScroll()
@@ -31,12 +25,23 @@ const Navbar = () => {
       setHidden(false)
     }
   })
+  const pathname = usePathname()
 
-  function Reload() {
-    location.reload()
+  interface NavBroProps {
+    name: string
+    url: string
   }
 
-  const [isOpen, setIsOpen] = useState(false)
+  const NavBro: React.FC<NavBroProps> = ({ name, url }) => {
+    return (
+      <div className={`group relative inline-block cursor-pointer ${name == "ลงทะเบียน" && "bg-greenishCream text-greenText hover:bg-opacity-70 shadow-lg px-4 py-2 rounded-3xl transition-all"}`}>
+        <Link href={url} className={pathname.startsWith(url) ? 'text-lg font-bold' : ''}>
+          {name}
+        </Link>
+        {name !== "ลงทะเบียน" && (<span className="absolute bottom-0 left-2 h-[2px] w-0 rounded-full bg-greenishCream transition-all duration-300 group-hover:w-[80%]"></span>)}
+     </div>
+    )
+  }
   return (
     <motion.div
       variants={{
@@ -47,51 +52,55 @@ const Navbar = () => {
       transition={{ duration: 0.35, ease: 'easeInOut' }}
       className="sticky top-0 z-50 h-20 w-screen bg-gradient-to-r from-[#1A8B6D] to-[#0E544B] text-white"
     >
-      <div
-        className="flex h-full cursor-pointer items-center justify-between px-6"
-      >
+      <div className="flex h-full cursor-pointer items-center justify-between px-16">
         <Link href="/" className="flex items-center justify-center space-x-4">
           <Logo className="w-16" />
-          <div className="font-Inter  items-center text-lg text-white opacity-100 flex flex-col">
-            <p className="text-md lg:text-2xl font-bold tracking-wider">TRIAM UDOM</p>
-            <p className="text-sm lg:text-lg font-semibold">OPEN HOUSE 2025</p>
+          <div className="flex flex-col items-center font-Inter text-lg text-white opacity-100">
+            <p className="text-md font-bold tracking-wider lg:text-2xl">TRIAM UDOM</p>
+            <p className="text-sm font-semibold lg:text-lg">OPEN HOUSE 2025</p>
           </div>
         </Link>
-        <nav className="hidden space-x-6 md:flex">
-          <Link href="/" className="underline">
-            หน้าแรก
-          </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="transition-all ease-in-out hover:translate-y-1">
-              ตารางการแสดง
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem className="bg-greenText text-white">
-                <Link href="larn70">ลาน 70 ปีฯ</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="theatre">หอประชุมฯ</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Link href="" className="hover:underline">
-            แผนผังงาน
-          </Link>
-          <Link href="" className="hover:underline">
-            การเดินทาง
-          </Link>
-          {status === 'unauthenticated' ? (
-            <Link href="/auth" className="hover:underline">
-              เข้าสู่ระบบ
-            </Link>
-          ) :
-            status === 'authenticated' &&
-            (
-            <Link href="/e-ticket" className="hover:underline">
-              บัญชี
-            </Link>
-          )}
 
+        <nav className="hidden md:flex md:items-center md:justify-around md:w-[50vw]">
+          <NavBro name="หน้าแรก" url="/" />
+          <div
+            className={`group relative inline-block ${
+              pathname.startsWith('/larn70') || pathname.startsWith('/theatre')
+                ? 'font-semibold underline'
+                : ''
+            } `}
+            onMouseOver={() => setShows(true)}
+            onClick={() => setShows(true)}
+            onMouseLeave={() => setShows(false)}
+          >
+            <span>ตารางการแสดง</span>
+            <AnimatePresence>
+              {shows && (
+                <motion.div
+                  key={'dropdown'}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute -bottom-[5rem] -left-4 z-20 flex w-36 cursor-pointer flex-col items-center justify-center rounded-xl bg-greenText bg-opacity-70"
+                >
+                  <Link href="/theatre" className="cursor-pointer py-2 hover:bg-opacity-100">
+                    หอประชุมฯ
+                  </Link>
+                  <div className="h-[2px] w-full bg-gradient-to-r from-greenishCream to-greenText"></div>
+                  <Link href="/larn70" className="py-2 hover:bg-opacity-100">
+                    ลาน 70 ปีฯ
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <NavBro name="แผนผังงาน" url="/maps" />
+          <NavBro name="การเดินทางมาโรงเรียน" url="/direction" />
+          {status === 'unauthenticated' ? (
+            <NavBro name="ลงทะเบียน" url="/register" />
+          ) : (
+            status === 'authenticated' && <NavBro name="บัญชี" url="/e-ticket" />
+          )}
         </nav>
         <div className="md:hidden">
           <Hamburger status={status} />

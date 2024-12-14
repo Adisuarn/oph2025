@@ -33,25 +33,25 @@ const Page = async () => {
         }}
       />
       <motion.section
-        initial={{ opacity: 0.75, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          opacity: { duration: 0.5, ease: 'easeInOut' },
-          y: { type: 'spring', stiffness: 70, damping: 20 },
-        }}
+        // initial={{ opacity: 0.75, y: -10 }}
+        // animate={{ opacity: 1, y: 0 }}
+        // transition={{
+        //   opacity: { duration: 0.5, ease: 'easeInOut' },
+        //   y: { type: 'spring', stiffness: 70, damping: 20 },
+        // }}
         className="relative top-0 -mt-20 flex min-h-screen w-screen flex-col items-center justify-between overflow-hidden bg-gradient-radial from-[#ECF5C8] to-[#6AB692] md:justify-around lg:justify-end"
       >
-        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 lg:hidden">
-          <Landing className="w-[100vw] md:h-[100vh]" />
+        <div className="absolute -bottom-40 md:-bottom-12 left-1/2 -translate-x-1/2 lg:hidden">
+          <Landing className="h-screen w-[100vw] md:h-[100vh]" />
         </div>
         <div className="absolute left-1/2 top-0 hidden min-h-screen w-full -translate-x-1/2 lg:block">
           <MLanding1 className="overflow-x-hidden object-cover lg:w-[100vw] xl:h-full xl:min-h-screen xl:w-full" />
         </div>
-        <div className="absolute left-1/2 top-14 z-40 -translate-x-1/2 md:top-0 lg:top-[10%]">
+        <div className="absolute left-1/2 top-14 z-40 -translate-x-1/2 lg:top-[15%] xl:top-[10%]">
           <TUOPH className="w-[95vw] md:w-[80vw]" />
         </div>
         <div className="md:hidden"></div>
-        <div className="relative -top-2 flex flex-col items-center justify-center space-y-8 md:top-8 md:space-y-8 lg:-top-4 lg:mb-4 xl:space-y-10 2xl:mb-16 2xl:space-y-14">
+        <div className="relative -top-2 flex flex-col items-center justify-center space-y-8 md:top-24 md:space-y-8 lg:-top-4 lg:mb-4 xl:space-y-10 2xl:mb-16 2xl:space-y-14">
           <div className="rounded-full bg-gradient-to-r from-[#E03C2E] to-[#F28041] px-10 py-3 font-semibold text-white shadow-2xl transition-all hover:scale-105 md:text-xl xl:py-4 xl:text-2xl 2xl:px-12 2xl:py-4 2xl:text-3xl">
             10-11 January 2025
           </div>
